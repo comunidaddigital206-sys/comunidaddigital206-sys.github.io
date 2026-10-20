@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Ejemplo · Cabañas y alojamientos · Yaguá</title>
+<meta name="description" content="Ejemplo de página web para cabañas y alojamientos, hecho por Yaguá Estudio digital.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;700&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--fondo:#F3F1EA;--tinta:#1D2A1F;--acento:#3E6B43;--suave:#DCE5D3;--calido:#C8783A;--wa:#1FAF38}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--fondo);color:var(--tinta);font:16px/1.55 Manrope,system-ui,sans-serif;padding-bottom:132px}
+.ejemplo{background:#111;color:#F6EFE3;font-size:13px;text-align:center;padding:9px 16px}
+.ejemplo b{color:#F5A300}
+.hero{background:linear-gradient(160deg,var(--acento),color-mix(in srgb,var(--acento) 55%,#000));color:#fff;padding:52px 20px 44px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:var(--calido);opacity:.35}
+.hero-in{max-width:680px;margin:0 auto;position:relative;z-index:1}
+.tipo{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.16);padding:6px 11px;border-radius:999px}
+.aviso{display:inline-block;margin-left:6px;font-size:12px;font-weight:700;background:var(--calido);color:#fff;padding:6px 11px;border-radius:999px}
+h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(34px,9vw,54px);line-height:1.05;margin:16px 0 8px}
+.lema{font-size:20px;font-weight:600;opacity:.95}
+.bajada{margin-top:12px;opacity:.9;max-width:560px}
+.acciones{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 22px;border-radius:12px;font-weight:700;text-decoration:none;border:0;font-size:16px;cursor:pointer;font-family:inherit}
+.btn .ico{width:20px;height:20px}
+.btn-wa{background:var(--wa);color:#fff;flex:1 1 230px}
+.btn-claro{background:#fff;color:var(--tinta)}
+section{max-width:680px;margin:0 auto;padding:34px 20px 6px}
+h2{font-family:'Fraunces',Georgia,serif;font-size:27px;margin-bottom:16px}
+h3{font-size:17px;margin-bottom:4px}
+.tarjetas{display:grid;gap:12px}
+.tarjeta{background:#fff;border-radius:14px;padding:18px;border-top:4px solid var(--acento);box-shadow:0 1px 0 rgba(0,0,0,.05)}
+.iconos{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.icono{background:#fff;border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:8px;font-weight:600;font-size:15px}
+.icono .ico{width:30px;height:30px;color:var(--acento)}
+.pasos{list-style:none;display:grid;gap:14px}
+.pasos li{display:flex;gap:14px;align-items:flex-start}
+.pasos b{flex:0 0 38px;height:38px;border-radius:50%;background:var(--acento);color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{background:var(--suave);color:var(--tinta);padding:9px 14px;border-radius:999px;font-weight:600;font-size:14px}
+.galeria{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.foto{aspect-ratio:1;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--tinta);text-align:center;padding:10px;font-size:13px;font-weight:600}
+.foto svg{width:30px;height:30px;opacity:.55}
+.f0{background:var(--suave)}.f1{background:color-mix(in srgb,var(--calido) 25%,#fff)}.f2{background:color-mix(in srgb,var(--acento) 18%,#fff)}.f3{background:color-mix(in srgb,var(--suave) 60%,var(--calido) 20%)}
+.nota-fotos{font-size:13px;opacity:.7;margin-top:8px}
+.pendiente{background:#fff;border:2px dashed var(--suave);border-radius:12px;padding:16px;font-style:italic;opacity:.8}
+.mapa{background:#fff;border-radius:14px;padding:18px;display:flex;gap:12px;align-items:center}
+.mapa .ico{width:30px;height:30px;color:var(--acento);flex:0 0 30px}
+.horario{background:#fff;border-radius:14px;padding:6px 18px}
+.horario div{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px dashed var(--suave)}
+.horario div:last-child{border:0}
+.yagua{max-width:680px;margin:34px auto 0;padding:0 20px}
+.yagua-in{background:#111;color:#F6EFE3;border-radius:18px;padding:24px}
+.yagua-in p{opacity:.85;margin:6px 0 16px}
+.yagua-in h2{color:#F5A300;font-family:Manrope,sans-serif;font-size:21px;margin:0}
+footer{text-align:center;font-size:13px;opacity:.6;padding:26px 20px}
+.fijo{position:fixed;left:0;right:0;bottom:0;padding:10px 14px 14px;background:linear-gradient(transparent,var(--fondo) 28%)}
+.fijo-in{max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:6px}
+.fijo .btn{width:100%;flex:none}
+.fijo small{text-align:center;font-size:12px;opacity:.75}
+dialog{border:0;border-radius:18px;padding:24px;max-width:340px;margin:auto}
+dialog::backdrop{background:rgba(0,0,0,.5)}
+dialog .burbuja{background:#DCF8C6;border-radius:12px 12px 2px 12px;padding:12px 14px;margin:14px 0;font-size:15px}
+dialog h3{font-size:18px}
+dialog p{font-size:14px;opacity:.8}
+</style>
+</head>
+<body>
+<div class="ejemplo">Ejemplo de diseño hecho por <b>Yaguá</b>. El negocio es inventado: así podría verse el tuyo.</div>
+<header class="hero"><div class="hero-in">
+  <span class="tipo">Cabañas en las sierras</span>
+  <h1>Cabañas Los Arrayanes</h1>
+  <p class="lema">Despertate con vista a las sierras.</p>
+  <p class="bajada">Cabañas equipadas para 2 a 5 personas, a pasos del centro. Consultá disponibilidad por WhatsApp y reservá directo, sin intermediarios.</p>
+  <div class="acciones">
+    <button class="btn btn-wa demo"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 1c-1-.5-2-1.5-2.5-2.5l1-1-1-2z"/></svg>Consultar disponibilidad</button>
+    
+  </div>
+</div></header>
+<section><h2>Nuestras cabañas</h2><div class="tarjetas"><div class="tarjeta"><h3>Cabaña para 2</h3><p>Cama matrimonial, cocina equipada, galería con vista. Ideal para escapadas en pareja.</p></div><div class="tarjeta"><h3>Cabaña para 4 o 5</h3><p>Dos dormitorios, living con hogar, parrilla propia. Pensada para familias.</p></div></div></section>
+<section><h2>Qué incluye</h2><div class="iconos"><div class="icono"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-7h18v7M3 14h18M6 11V8h5v3"/></svg><span>Ropa de cama y toallas</span></div><div class="icono"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19" r="1"/></svg><span>Wifi</span></div><div class="icono"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 4 6 6 6 11a6 6 0 0 1-12 0c0-3 2-5 3-7 1 2 2 3 3 3 0-3 0-5 0-7z"/></svg><span>Parrilla propia</span></div><div class="icono"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16v-4l2-5h12l2 5v4M4 16h16M7 16v2M17 16v2"/><circle cx="7.5" cy="13" r=".5"/><circle cx="16.5" cy="13" r=".5"/></svg><span>Cochera cubierta</span></div></div></section>
+<section><h2>Cómo reservar</h2><ol class="pasos"><li><b>1</b><div><h3>Escribinos</h3><p>Contanos fechas y cuántas personas son.</p></div></li><li><b>2</b><div><h3>Te confirmamos</h3><p>Te pasamos disponibilidad y precio al instante.</p></div></li><li><b>3</b><div><h3>Señás y listo</h3><p>Con la seña por transferencia, la fecha queda tuya.</p></div></li></ol></section>
+<section><h2>Fotos</h2><div class="galeria"><figure class="foto f0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-8 8"/></svg><figcaption>Frente de la cabaña</figcaption></figure><figure class="foto f1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-8 8"/></svg><figcaption>Vista desde la galería</figcaption></figure><figure class="foto f2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-8 8"/></svg><figcaption>Dormitorio principal</figcaption></figure><figure class="foto f3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-8 8"/></svg><figcaption>Parrilla y jardín</figcaption></figure></div><p class="nota-fotos">En tu página van tus fotos reales: las de Instagram sirven.</p></section>
+<section><h2>Dónde estamos</h2>
+  <div class="mapa"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><div><b>Tu dirección acá</b><br><span style="opacity:.75">Con un toque, Google Maps le indica cómo llegar.</span></div></div>
+</section>
+<section><h2>Horarios</h2><div class="horario"><div><span>Lunes a viernes</span><span>Tus horarios</span></div><div><span>Sábados</span><span>Tus horarios</span></div></div></section>
+<div class="yagua"><div class="yagua-in">
+  <h2>¿Querés una así para tu negocio?</h2>
+  <p>Cada reserva que entra por tu página llega directo a tu WhatsApp, sin comisión de plataformas. Pago único, lista en una semana.</p>
+  <a class="btn btn-wa" style="width:100%;flex:none" href="https://wa.me/5492284320122?text=Hola!%20Vi%20el%20ejemplo%20de%20p%C3%A1gina%20para%20caba%C3%B1as%20y%20alojamientos%20y%20quiero%20una%20as%C3%AD%20para%20mi%20negocio."><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 1c-1-.5-2-1.5-2.5-2.5l1-1-1-2z"/></svg>Escribirle a Yaguá</a>
+</div></div>
+<footer>Cabañas Los Arrayanes es un negocio inventado · Ejemplo de Yaguá Estudio digital</footer>
+<div class="fijo"><div class="fijo-in"><button class="btn btn-wa demo"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 1c-1-.5-2-1.5-2.5-2.5l1-1-1-2z"/></svg>Consultar disponibilidad</button><small>Probá el botón: así le llegan los mensajes a tu WhatsApp</small></div></div>
+<dialog id="d">
+  <h3>Así le llega a tu WhatsApp</h3>
+  <div class="burbuja">Hola! Quiero consultar disponibilidad para 4 personas, del 10 al 14 de enero.</div>
+  <p>En tu página, este botón abre tu WhatsApp con el mensaje listo. El cliente solo toca enviar.</p>
+  <div class="acciones" style="margin-top:16px">
+    <a class="btn btn-wa" href="https://wa.me/5492284320122?text=Hola!%20Vi%20el%20ejemplo%20de%20p%C3%A1gina%20para%20caba%C3%B1as%20y%20alojamientos%20y%20quiero%20una%20as%C3%AD%20para%20mi%20negocio.">Quiero una así</a>
+    <button class="btn" style="background:#eee" onclick="d.close()">Seguir mirando</button>
+  </div>
+</dialog>
+<script>document.querySelectorAll('.demo').forEach(b=>b.addEventListener('click',()=>document.getElementById('d').showModal()))</script>
+</body>
+</html>

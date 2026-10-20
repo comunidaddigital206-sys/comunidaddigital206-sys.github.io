@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Churritos del Sur · Churros artesanales en Olavarría</title>
+<meta name="description" content="Churros artesanales simples y rellenos en Bolívar 2995, Olavarría. Pedidos por WhatsApp y churros para eventos.">
+<meta name="theme-color" content="#5A2E1B">
+<link rel="icon" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Dancing+Script:wght@700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--kraft:#F4E6CC;--kraftOsc:#E7D2AC;--choco:#5A2E1B;--chocoOsc:#3A1F12;--terra:#A8432A;--mostaza:#D89A3B;--crema:#FFF8EC;--wa:#1FAF38}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--crema);color:var(--chocoOsc);font:16px/1.55 Nunito,system-ui,sans-serif;padding-bottom:92px;overflow-x:hidden}
+img{display:block;max-width:100%}
+.slab{font-family:'Alfa Slab One',Georgia,serif;font-weight:400;letter-spacing:.01em}
+.script{font-family:'Dancing Script',cursive}
+.wrap{max-width:720px;margin:0 auto;padding:0 18px}
+.ico{width:22px;height:22px;flex:0 0 22px}
+
+.barra{position:sticky;top:0;z-index:20;background:var(--choco);color:var(--kraft)}
+.barra .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+.barra .marca{display:flex;align-items:center;gap:10px;font-family:'Alfa Slab One';font-size:17px}
+.barra img{width:44px;height:44px;border-radius:50%}
+.barra a{background:var(--mostaza);color:var(--chocoOsc);font-weight:800;text-decoration:none;padding:9px 15px;border-radius:999px;font-size:14px}
+
+.hero{background:var(--kraft);background-image:radial-gradient(circle at 20% 10%,rgba(255,255,255,.5),transparent 40%),repeating-linear-gradient(45deg,rgba(90,46,27,.035) 0 2px,transparent 2px 9px);padding:28px 0 36px;text-align:center;border-bottom:6px solid var(--terra)}
+.sello{width:min(240px,64vw);aspect-ratio:1;border-radius:50%;margin:0 auto;box-shadow:0 0 0 6px var(--crema),0 0 0 10px var(--choco),0 14px 30px rgba(58,31,18,.3)}
+.nuevo{display:inline-block;margin-top:18px;background:var(--terra);color:#fff;font:800 14px Nunito;letter-spacing:.08em;text-transform:uppercase;padding:6px 14px;border-radius:6px;transform:rotate(-2deg)}
+.hero h1{font-size:clamp(30px,8.5vw,44px);color:var(--choco);line-height:1.05;margin:14px 0 2px}
+.hero .script{font-size:clamp(28px,8vw,38px);color:var(--terra);display:block;margin-bottom:8px}
+.hero p{font-weight:700;color:#6b4b36;max-width:440px;margin:0 auto 20px}
+.botones{display:grid;gap:10px}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:56px;border-radius:14px;border:0;cursor:pointer;font:800 17px Nunito,sans-serif;text-decoration:none;padding:0 18px;color:#fff;box-shadow:0 5px 0 rgba(0,0,0,.18)}
+.btn:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.18)}
+.btn-wa{background:var(--wa)}
+.btn-choco{background:var(--choco)}
+.btn-claro{background:#fff;color:var(--choco);border:3px solid var(--choco);box-shadow:none}
+.btn .w{background:#fff;border-radius:50%;padding:4px;width:30px;height:30px;flex:0 0 30px}
+
+section{padding:38px 0 6px}
+.titulo{font-size:clamp(26px,7vw,34px);color:var(--choco);line-height:1.1}
+.titulo + .script{display:block;font-size:26px;color:var(--terra);margin:-2px 0 16px}
+
+.menu{display:grid;gap:14px}
+.item{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 6px 18px rgba(58,31,18,.1);border:2px solid var(--kraftOsc)}
+.item .cab{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:16px 18px;background:var(--kraft)}
+.item h3{font-family:'Alfa Slab One';font-weight:400;font-size:20px;color:var(--choco)}
+.item .unidad{font:800 15px Nunito;background:var(--choco);color:var(--kraft);border-radius:999px;padding:5px 12px;white-space:nowrap}
+.item ul{list-style:none;padding:6px 18px}
+.item li{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px dashed var(--kraftOsc);font-weight:700}
+.item li:last-child{border:0}
+.item li b{color:var(--terra)}
+.item .pedir{padding:0 18px 16px}
+.item .pedir .btn{min-height:48px;font-size:16px}
+.aviso-precios{font-size:13px;color:#8a6d55;margin-top:10px;text-align:center}
+
+.eventos{position:relative;background:var(--choco);color:var(--kraft);border-radius:24px;overflow:hidden}
+.eventos img{width:100%;height:230px;object-fit:cover;opacity:.9}
+.eventos .info{padding:20px}
+.eventos h3{font-family:'Alfa Slab One';font-weight:400;font-size:26px;color:#fff;margin-bottom:6px}
+.eventos p{opacity:.92;font-weight:600;margin-bottom:14px}
+.eventos .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.eventos .chips span{background:rgba(244,230,204,.15);border:1px solid rgba(244,230,204,.35);border-radius:999px;padding:5px 12px;font-weight:700;font-size:14px}
+.eventos .btn{background:var(--mostaza);color:var(--chocoOsc)}
+
+.regalo{display:grid;grid-template-columns:1fr 1.1fr;gap:0;background:#fff;border-radius:24px;overflow:hidden;border:2px solid var(--kraftOsc)}
+.regalo img{width:100%;height:100%;min-height:230px;object-fit:cover}
+.regalo .info{padding:18px}
+.regalo h3{font-family:'Alfa Slab One';font-weight:400;font-size:21px;color:var(--choco);margin-bottom:6px}
+.regalo p{font-size:14.5px;font-weight:600;color:#6b4b36;margin-bottom:12px}
+.regalo .btn{min-height:46px;font-size:15px}
+
+.horarios{background:#fff;border-radius:20px;padding:6px 18px;border:2px solid var(--kraftOsc)}
+.horarios div{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px dashed var(--kraftOsc);font-weight:700}
+.horarios div:last-child{border:0}
+.horarios span:last-child{text-align:right}
+.cerrado{color:#a08a78}
+
+.mapa{width:100%;height:230px;border:0;border-radius:20px;margin:14px 0 12px;background:#eee}
+.ig{display:flex;align-items:center;gap:14px;background:#fff;border-radius:20px;padding:16px;text-decoration:none;color:inherit;margin-top:14px;border:2px solid var(--kraftOsc)}
+.ig .c{width:48px;height:48px;border-radius:14px;background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF);display:flex;align-items:center;justify-content:center;color:#fff;flex:0 0 48px}
+
+footer{text-align:center;padding:32px 18px 10px;font-size:13px;color:#8a6d55}
+footer img{width:84px;height:84px;border-radius:50%;margin:0 auto 10px}
+.yagua{display:block;margin-top:12px;font-size:12px;color:#a8917d}
+.yagua a{color:#a8917d}
+
+.fijo{position:fixed;left:0;right:0;bottom:0;z-index:30;background:linear-gradient(transparent,var(--crema) 30%);padding:12px 12px 14px}
+.fijo .fila{max-width:720px;margin:0 auto;display:grid;grid-template-columns:1.3fr 1fr;gap:8px}
+.fijo .btn{min-height:52px;font-size:16px}
+
+dialog{border:0;border-radius:22px;padding:24px;max-width:340px;margin:auto;color:var(--chocoOsc)}
+dialog::backdrop{background:rgba(58,31,18,.6)}
+dialog h3{font-family:'Alfa Slab One';font-weight:400;font-size:21px;color:var(--choco)}
+dialog .burbuja{background:#DCF8C6;border-radius:14px 14px 2px 14px;padding:12px 14px;margin:14px 0;font-size:15px}
+dialog p{font-size:14px;color:#6b4b36;font-weight:600}
+dialog .acc{display:grid;gap:8px;margin-top:16px}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="wa" viewBox="0 0 24 24"><path fill="#1FAF38" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.6-.1 1.1z"/></symbol>
+  <symbol id="i-mapa" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></g></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6"/></g></symbol>
+  <symbol id="i-fiesta" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l5-14 9 9z"/><path d="M14 4l1 2M19 9l2 1M17 3l-1 3M21 6l-3 1"/></g></symbol>
+</svg>
+
+<header class="barra"><div class="wrap">
+  <span class="marca"><img src="img/logo.png" alt="">Churritos del Sur</span>
+  <a href="#menu">Ver precios</a>
+</div></header>
+
+<div class="hero"><div class="wrap">
+  <img class="sello" src="img/logo.png" alt="Churritos del Sur, y algo artesanal">
+  <span class="nuevo">Nuevo en Olavarría</span>
+  <h1 class="slab">Churros artesanales</h1>
+  <span class="script">simples y rellenos</span>
+  <p>En Bolívar 2995, Olavarría. Pedí por WhatsApp o llevalos a tu evento.</p>
+  <div class="botones">
+    <button class="btn btn-wa demo" data-msg="Hola! Quiero pedir 1 docena de churros rellenos de dulce de leche para retirar hoy a la tarde."><svg class="w"><use href="#wa"/></svg>Pedir por WhatsApp</button>
+    <button class="btn btn-choco demo" data-msg="Hola! Quiero presupuesto de churros para un cumpleaños el sábado 15 de noviembre, unas 40 personas."><svg class="ico"><use href="#i-fiesta"/></svg>Churros para eventos</button>
+  </div>
+</div></div>
+
+<main class="wrap">
+  <section id="menu">
+    <h2 class="titulo slab">Nuestros precios</h2>
+    <span class="script">y algo artesanal</span>
+    <div class="menu">
+      <article class="item">
+        <div class="cab"><h3>Churro tradicional</h3><span class="unidad">$700 c/u</span></div>
+        <ul><li>x 3 unidades <b>$1.800</b></li><li>1/2 docena <b>$3.500</b></li><li>Docena <b>$7.000</b></li></ul>
+        <div class="pedir"><button class="btn btn-wa demo" style="width:100%" data-msg="Hola! Quiero 1 docena de churros tradicionales."><svg class="w"><use href="#wa"/></svg>Pedir tradicionales</button></div>
+      </article>
+      <article class="item">
+        <div class="cab"><h3>Relleno de dulce de leche</h3><span class="unidad">$900 c/u</span></div>
+        <ul><li>x 3 unidades <b>$2.500</b></li><li>1/2 docena <b>$5.000</b></li><li>Docena <b>$8.500</b></li></ul>
+        <div class="pedir"><button class="btn btn-wa demo" style="width:100%" data-msg="Hola! Quiero 1/2 docena de churros rellenos de dulce de leche."><svg class="w"><use href="#wa"/></svg>Pedir rellenos</button></div>
+      </article>
+      <article class="item">
+        <div class="cab"><h3>Medio baño de chocolate</h3><span class="unidad">$1.000 c/u</span></div>
+        <ul><li>x 3 unidades <b>$3.000</b></li><li>1/2 docena <b>$6.000</b></li><li>Docena <b>$12.000</b></li></ul>
+        <div class="pedir"><button class="btn btn-wa demo" style="width:100%" data-msg="Hola! Quiero 3 churros con medio baño de chocolate."><svg class="w"><use href="#wa"/></svg>Pedir con chocolate</button></div>
+      </article>
+    </div>
+    <p class="aviso-precios">Precios publicados en nuestro Instagram. Consultá por WhatsApp antes de pedir.</p>
+  </section>
+
+  <section>
+    <div class="eventos">
+      <img src="img/chocolate.jpg" alt="Churros con chocolate">
+      <div class="info">
+        <h3>Churros para tu evento</h3>
+        <p>Llevamos churros artesanales a tu festejo. Contanos la fecha y cuántos son, y te pasamos el presupuesto.</p>
+        <div class="chips"><span>Cumpleaños</span><span>Reuniones</span><span>Fiestas</span></div>
+        <button class="btn demo" style="width:100%" data-msg="Hola! Quiero presupuesto de churros para un cumpleaños el sábado 15 de noviembre, unas 40 personas."><svg class="w"><use href="#wa"/></svg>Pedir presupuesto</button>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="regalo">
+      <img src="img/cajita.jpg" alt="Cajita de regalo con churros">
+      <div class="info">
+        <h3>Cajitas para regalar</h3>
+        <p>Churros en cajita, listos para sorprender en fechas especiales.</p>
+        <button class="btn btn-wa demo" style="width:100%" data-msg="Hola! Quiero encargar una cajita de regalo con churros para el viernes."><svg class="w"><use href="#wa"/></svg>Encargar</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="visitanos">
+    <h2 class="titulo slab">Visitanos</h2>
+    <span class="script">te esperamos</span>
+    <div class="horarios">
+      <div><span>Miércoles a sábado</span><span>10 a 13 h<br>16 a 20 h</span></div>
+      <div><span>Domingo</span><span>16 a 20 h</span></div>
+      <div class="cerrado"><span>Lunes y martes</span><span>Cerrado</span></div>
+    </div>
+    <iframe class="mapa" loading="lazy" title="Mapa" src="https://maps.google.com/maps?q=Bol%C3%ADvar%202995,%20Olavarr%C3%ADa,%20Buenos%20Aires&z=16&output=embed"></iframe>
+    <a class="btn btn-claro" href="https://www.google.com/maps/search/?api=1&query=Bol%C3%ADvar%202995%2C%20Olavarr%C3%ADa"><svg class="ico"><use href="#i-mapa"/></svg>Bolívar 2995 · Cómo llegar</a>
+    <a class="ig" href="https://www.instagram.com/churrito_delsur/"><span class="c"><svg class="ico"><use href="#i-ig"/></svg></span><span><b>@churrito_delsur</b><br><span style="color:#6b4b36;font-weight:600">Novedades, sorteos y promos</span></span></a>
+  </section>
+</main>
+
+<footer>
+  <img src="img/logo.png" alt="Churritos del Sur">
+  Churritos del Sur · Bolívar 2995 · Olavarría
+  <span class="yagua">Muestra de página hecha por Yaguá · <a href="https://wa.me/5492284320122?text=Hola!%20Vi%20la%20muestra%20de%20p%C3%A1gina%20de%20Churritos%20del%20Sur%20y%20quiero%20saber%20m%C3%A1s.">Escribile a Yaguá</a></span>
+</footer>
+
+<div class="fijo"><div class="fila">
+  <button class="btn btn-wa demo" data-msg="Hola! Quiero pedir 1 docena de churros rellenos de dulce de leche para retirar hoy a la tarde."><svg class="w"><use href="#wa"/></svg>Pedir churros</button>
+  <button class="btn btn-choco demo" data-msg="Hola! Quiero presupuesto de churros para un cumpleaños el sábado 15 de noviembre, unas 40 personas.">Eventos</button>
+</div></div>
+
+<dialog id="d">
+  <h3>Así te llega al WhatsApp</h3>
+  <div class="burbuja" id="burbuja"></div>
+  <p>En tu página, este botón abre tu WhatsApp con el pedido ya escrito. El cliente solo toca enviar.</p>
+  <div class="acc">
+    <a class="btn btn-wa" href="https://wa.me/5492284320122?text=Hola!%20Vi%20la%20muestra%20de%20p%C3%A1gina%20de%20Churritos%20del%20Sur%20y%20quiero%20saber%20m%C3%A1s.">Quiero esta página</a>
+    <button class="btn btn-claro" onclick="d.close()">Seguir mirando</button>
+  </div>
+</dialog>
+<script>
+document.querySelectorAll('.demo').forEach(b=>b.addEventListener('click',()=>{document.getElementById('burbuja').textContent=b.dataset.msg;document.getElementById('d').showModal()}));
+</script>
+</body>
+</html>

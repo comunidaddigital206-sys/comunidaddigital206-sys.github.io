@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>RyF Calzados · Catálogo · Olavarría</title>
+<meta name="description" content="RyF Calzados: zapatillas y calzado para mujer, hombre y niños en Olavarría. Elegí tu modelo y tu talle, y pedilo por WhatsApp. Envíos a todo el país.">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --negro:#0A0A0A;--panel:#121212;--panel2:#1A1A1A;--linea:#262626;--txt:#F4F4EF;--sub:#A3A39C;
+  --fluor:#C6F31A;--fluor2:#DBFF4D;--glow:0 0 28px rgba(198,243,26,.35);--wa:#1FAF38;--r:20px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:120px}
+body{background:var(--negro);color:var(--txt);font:16px/1.55 Inter,system-ui,sans-serif;overflow-x:hidden;padding-bottom:90px}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.anton{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.005em}
+.f{color:var(--fluor)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+.ico{width:22px;height:22px;flex:0 0 22px}
+.chip-ej{display:inline-flex;align-items:center;gap:6px;font:800 11px Inter;letter-spacing:.08em;text-transform:uppercase;color:var(--negro);background:#F5C542;border-radius:999px;padding:4px 10px;margin-bottom:12px}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+/* logo */
+.logo{display:inline-flex;align-items:center;gap:6px}
+.logo .tiles{display:flex;gap:3px}
+.logo .tiles span{width:var(--t,24px);height:var(--t,24px);background:var(--fluor);color:var(--negro);font:900 calc(var(--t,24px)*.62) Georgia,serif;display:flex;align-items:center;justify-content:center;border-radius:3px;box-shadow:var(--glow)}
+.logo .tiles span.y{font-style:italic;font-weight:700;font-size:calc(var(--t,24px)*.5)}
+.logo .cal{background:var(--fluor);color:var(--negro);font:400 calc(var(--t,24px)*.5) Anton;letter-spacing:.14em;padding:3px 8px 2px;border-radius:3px;box-shadow:var(--glow)}
+.logo.col{flex-direction:column;gap:5px}
+
+/* header */
+.top{position:sticky;top:0;z-index:40;background:rgba(10,10,10,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--linea)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+.top .acc{display:flex;gap:8px}
+.top a.pill{display:inline-flex;align-items:center;gap:6px;background:var(--fluor);color:var(--negro);font-weight:900;font-size:14px;text-decoration:none;padding:9px 14px;border-radius:999px}
+.nav{display:flex;gap:6px;overflow-x:auto;padding:0 18px 10px;max-width:1080px;margin:0 auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{flex:0 0 auto;color:var(--sub);text-decoration:none;font-weight:700;font-size:13px;padding:6px 12px;border-radius:999px;border:1px solid var(--linea)}
+.nav a:hover,.nav a.on{color:var(--negro);background:var(--fluor);border-color:var(--fluor)}
+
+/* hero */
+.hero{position:relative;padding:34px 0 10px;overflow:hidden}
+.hero:before{content:"";position:absolute;right:-45%;top:-35%;width:120%;height:90%;background:radial-gradient(closest-side,rgba(198,243,26,.10),transparent 100%);pointer-events:none;z-index:0}.hero .grid{z-index:1}
+.hero .grid{display:grid;gap:22px;position:relative}
+.rating{display:inline-flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--linea);border-radius:999px;padding:6px 12px 6px 8px;font-weight:700;font-size:13px;margin-bottom:16px;text-decoration:none;color:inherit}
+.rating .st{color:var(--fluor);letter-spacing:1px}
+.hero h1{font-size:clamp(46px,13vw,96px);line-height:.9}
+.hero h1 .out{-webkit-text-stroke:2px var(--fluor);color:transparent}
+.hero p.lead{color:#cfcfc8;font-size:17px;max-width:520px;margin:16px 0 22px}
+.cta{display:grid;gap:10px;max-width:520px}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:56px;border-radius:16px;font-weight:900;font-size:17px;text-decoration:none;padding:0 20px;transition:transform .15s}
+.btn:active{transform:scale(.98)}
+.btn-f{background:var(--fluor);color:var(--negro);box-shadow:var(--glow)}
+.btn-o{border:2px solid #333;color:var(--txt)}
+.hero .foto{position:relative;border-radius:26px;overflow:hidden;border:1px solid var(--linea);aspect-ratio:4/5;max-height:560px}
+.hero .foto img{width:100%;height:100%;object-fit:cover}
+.hero .foto .badge{position:absolute;left:14px;bottom:14px;right:14px;display:flex;justify-content:space-between;gap:8px}
+.hero .foto .badge span{background:rgba(10,10,10,.8);backdrop-filter:blur(6px);border:1px solid #333;border-radius:12px;padding:8px 12px;font-weight:800;font-size:13px}
+.hero .foto .badge span b{color:var(--fluor)}
+.marquee{margin-top:26px;border-block:1px solid var(--linea);overflow:hidden;white-space:nowrap;background:var(--panel)}
+.marquee div{display:inline-block;padding:12px 0;animation:mq 28s linear infinite;font:400 20px Anton;text-transform:uppercase;letter-spacing:.04em;color:#6f6f69}
+.marquee div span{color:var(--fluor);margin:0 18px}
+@keyframes mq{to{transform:translateX(-50%)}}
+@media (min-width:860px){.hero .grid{grid-template-columns:1.1fr .9fr;align-items:center}}
+
+section{padding:56px 0 10px}
+.h2{font-size:clamp(36px,9.5vw,64px);line-height:.95}
+.sub{color:var(--sub);font-weight:500;margin:10px 0 24px;max-width:560px}
+
+/* secciones (categorías) */
+.secs{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media (min-width:860px){.secs{grid-template-columns:repeat(3,1fr)}}
+.sec{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:1/1.1;background:var(--panel);border:1px solid var(--linea);text-align:left;display:flex;align-items:flex-end;padding:16px}
+.sec img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease;opacity:.75}
+.sec:hover img{transform:scale(1.06)}
+.sec:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(0,0,0,.9))}
+.sec .t{position:relative;z-index:1;width:100%}
+.sec b{display:block;font:400 clamp(26px,7vw,34px)/1 Anton;text-transform:uppercase}
+.sec small{display:flex;justify-content:space-between;align-items:center;color:var(--fluor);font-weight:800;font-size:13px;margin-top:6px}
+.sec .flecha{width:30px;height:30px;border-radius:50%;background:var(--fluor);color:var(--negro);display:flex;align-items:center;justify-content:center;font-weight:900}
+.sec.icono{background:radial-gradient(circle at 70% 25%,rgba(198,243,26,.18),var(--panel) 60%)}
+.sec.icono .em{position:absolute;right:14px;top:10px;font-size:64px;filter:grayscale(.2)}
+
+/* catálogo */
+.filtros{position:sticky;top:104px;z-index:30;background:linear-gradient(var(--negro) 75%,transparent);padding:10px 0 14px;margin-bottom:6px}
+.filtros .fila{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.filtros .fila::-webkit-scrollbar{display:none}
+.filtros button{flex:0 0 auto;padding:10px 16px;border-radius:999px;border:1px solid #333;font-weight:800;font-size:14px;color:#ddd;background:var(--panel)}
+.filtros button.on{background:var(--fluor);color:var(--negro);border-color:var(--fluor);box-shadow:var(--glow)}
+.grid-prod{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media (min-width:860px){.grid-prod{grid-template-columns:repeat(4,1fr)}}
+.prod{background:var(--panel);border:1px solid var(--linea);border-radius:18px;overflow:hidden;text-align:left;display:flex;flex-direction:column;transition:transform .2s,border-color .2s}
+.prod:hover{transform:translateY(-3px);border-color:#3a3a3a}
+.prod .img{position:relative;aspect-ratio:4/5;background:#151515}
+.prod .img img{width:100%;height:100%;object-fit:cover}
+.prod .img .tag{position:absolute;left:8px;top:8px;background:var(--fluor);color:var(--negro);font:900 11px Inter;letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;border-radius:6px}
+.prod .img .em{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:70px}
+.prod .info{padding:12px 12px 14px;display:flex;flex-direction:column;gap:4px;flex:1}
+.prod h3{font:800 15px/1.25 Inter}
+.prod .cat{color:var(--sub);font-size:12.5px;font-weight:600}
+.prod .ver{margin-top:auto;padding-top:10px;display:flex;align-items:center;justify-content:space-between;font-weight:900;font-size:13px;color:var(--fluor)}
+.prod .ver i{font-style:normal;width:30px;height:30px;border-radius:50%;background:var(--fluor);color:var(--negro);display:flex;align-items:center;justify-content:center}
+.vacio{grid-column:1/-1;text-align:center;color:var(--sub);padding:30px}
+
+/* hoja de producto */
+.hoja{position:fixed;inset:0;z-index:60;display:none}
+.hoja.open{display:block}
+.hoja .fondo{position:absolute;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(4px);animation:fade .25s}
+.hoja .panel{position:absolute;left:0;right:0;bottom:0;max-height:92vh;overflow:auto;background:#111;border-top:1px solid #2a2a2a;border-radius:26px 26px 0 0;animation:up .3s cubic-bezier(.2,.8,.2,1);padding-bottom:max(18px,env(safe-area-inset-bottom))}
+@media (min-width:860px){.hoja .panel{left:50%;right:auto;bottom:auto;top:50%;transform:translate(-50%,-50%);width:760px;border-radius:26px;display:grid;grid-template-columns:1fr 1fr;animation:fade .25s}}
+.hoja .agarre{width:44px;height:5px;border-radius:9px;background:#333;margin:10px auto}
+.hoja .pimg{aspect-ratio:1/1;background:#151515;position:relative}
+.hoja .pimg img{width:100%;height:100%;object-fit:cover}
+.hoja .pimg .em{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:110px}
+.hoja .pinfo{padding:18px}
+.hoja .pinfo h3{font:400 32px/1 Anton;text-transform:uppercase;margin:6px 0 6px}
+.hoja .pinfo .cat{color:var(--fluor);font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.06em}
+.hoja .pinfo p{color:var(--sub);font-size:14.5px}
+.hoja .lbl{font-weight:800;font-size:13px;margin:18px 0 8px;text-transform:uppercase;letter-spacing:.06em;color:#ddd}
+.talles{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.talles button{height:44px;border-radius:12px;border:1px solid #333;font-weight:800;background:var(--panel)}
+.talles button.on{background:var(--fluor);color:var(--negro);border-color:var(--fluor)}
+.cerrar{position:absolute;right:12px;top:12px;width:40px;height:40px;border-radius:50%;background:rgba(10,10,10,.75);border:1px solid #333;display:flex;align-items:center;justify-content:center;font-size:20px;z-index:2}
+.aviso-talle{color:#F5C542;font-size:13px;font-weight:700;margin-top:8px;display:none}
+@keyframes up{from{transform:translateY(100%)}}
+@keyframes fade{from{opacity:0}}
+
+/* pagos / envío */
+.pagos{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media (min-width:860px){.pagos{grid-template-columns:repeat(4,1fr)}}
+.pago{background:var(--panel);border:1px solid var(--linea);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.pago .c{width:46px;height:46px;border-radius:14px;background:rgba(198,243,26,.12);color:var(--fluor);display:flex;align-items:center;justify-content:center}
+.pago b{font-size:15px}
+.pago span{color:var(--sub);font-size:13px}
+.envio{margin-top:12px;border-radius:22px;padding:22px;background:linear-gradient(120deg,var(--fluor),var(--fluor2));color:var(--negro);display:flex;gap:16px;align-items:center}
+.envio .c{width:56px;height:56px;border-radius:16px;background:var(--negro);color:var(--fluor);display:flex;align-items:center;justify-content:center;flex:0 0 56px}
+.envio b{font:400 26px/1 Anton;text-transform:uppercase}
+.envio p{font-weight:700;font-size:14px;margin-top:4px}
+
+/* historia */
+.historia{display:grid;gap:18px}
+@media (min-width:860px){.historia{grid-template-columns:.9fr 1.1fr;align-items:center}}
+.historia .foto{border-radius:26px;overflow:hidden;border:1px solid var(--linea);aspect-ratio:4/5;position:relative}
+.historia .foto img{width:100%;height:100%;object-fit:cover}
+.historia .firma{position:absolute;left:14px;bottom:14px;background:rgba(10,10,10,.8);border:1px solid #333;border-radius:14px;padding:10px 14px}
+.historia .firma b{display:block;font:400 22px Anton;text-transform:uppercase}
+.historia .firma span{color:var(--fluor);font-weight:800;font-size:13px}
+.historia blockquote{font-size:19px;line-height:1.5;color:#e9e9e2;border-left:3px solid var(--fluor);padding-left:16px;margin-bottom:18px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stat{background:var(--panel);border:1px solid var(--linea);border-radius:16px;padding:14px 10px;text-align:center}
+.stat b{display:block;font:400 30px/1 Anton;color:var(--fluor)}
+.stat span{font-size:12px;color:var(--sub);font-weight:700}
+
+/* testimonios */
+.testis{display:grid;gap:12px}
+@media (min-width:860px){.testis{grid-template-columns:repeat(3,1fr)}}
+.testi{background:var(--panel);border:1px solid var(--linea);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:12px}
+.testi .st{color:var(--fluor);letter-spacing:2px}
+.testi p{font-size:16px;color:#e6e6df}
+.testi .quien{display:flex;align-items:center;gap:10px;margin-top:auto}
+.testi .av{width:38px;height:38px;flex:0 0 38px;border-radius:50%;background:var(--fluor);color:var(--negro);display:flex;align-items:center;justify-content:center;font:900 16px/1 Inter}
+.testi .quien b{font-size:14px}
+.testi .quien span{display:block;color:var(--sub);font-size:12px}
+.testi.mas{align-items:flex-start;justify-content:center;background:radial-gradient(circle at 80% 20%,rgba(198,243,26,.15),var(--panel) 60%)}
+.testi.mas b.n{font:400 56px/1 Anton;color:var(--fluor)}
+
+/* faq */
+details{background:var(--panel);border:1px solid var(--linea);border-radius:16px;padding:16px 18px;margin-bottom:8px}
+summary{font-weight:800;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:10px}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";color:var(--fluor);font-size:22px;line-height:1}
+details[open] summary:after{content:"–"}
+details p{color:var(--sub);margin-top:10px;font-size:15px}
+
+/* local */
+.local{display:grid;gap:12px}
+@media (min-width:860px){.local{grid-template-columns:1fr 1fr}}
+.datos{background:var(--panel);border:1px solid var(--linea);border-radius:22px;padding:20px;display:grid;gap:14px;align-content:start}
+.dato{display:flex;gap:12px;align-items:center;font-weight:800}
+.dato .c{width:44px;height:44px;border-radius:14px;background:rgba(198,243,26,.12);color:var(--fluor);display:flex;align-items:center;justify-content:center;flex:0 0 44px}
+.dato small{display:block;color:var(--sub);font-weight:600}
+.mapa{width:100%;height:100%;min-height:260px;border:0;border-radius:22px;filter:grayscale(1) invert(.92) contrast(.9)}
+
+footer{border-top:1px solid var(--linea);margin-top:56px;padding:34px 18px 20px;text-align:center;color:#77776f;font-size:13px}
+footer .logo{--t:30px;margin-bottom:14px}
+footer .soc{display:flex;justify-content:center;gap:10px;margin:14px 0}
+footer .soc a{width:44px;height:44px;border-radius:14px;border:1px solid #333;display:flex;align-items:center;justify-content:center;color:var(--txt)}
+.yagua{display:block;margin-top:14px;font-size:12px;color:#55554f}
+.yagua a{color:#77776f}
+
+.fijo{position:fixed;left:0;right:0;bottom:0;z-index:35;padding:10px 12px max(12px,env(safe-area-inset-bottom));background:linear-gradient(transparent,var(--negro) 40%)}
+.fijo .in{max-width:520px;margin:0 auto}
+
+dialog{border:1px solid #2a2a2a;border-radius:22px;padding:24px;max-width:350px;margin:auto;background:#141414;color:var(--txt)}
+dialog::backdrop{background:rgba(0,0,0,.75)}
+dialog h3{font:400 26px Anton;text-transform:uppercase;color:var(--fluor)}
+dialog .burbuja{background:#DCF8C6;color:#111;border-radius:14px 14px 2px 14px;padding:12px 14px;margin:14px 0;font-size:15px;white-space:pre-line}
+dialog p{font-size:14px;color:#b5b5ae}
+dialog .acc{display:grid;gap:8px;margin-top:16px}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.6-.1 1.1z"/></symbol>
+  <symbol id="i-envio" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></g></symbol>
+  <symbol id="i-cash" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/></g></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></g></symbol>
+  <symbol id="i-transf" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h14l-3-3M20 16H6l3 3"/></g></symbol>
+  <symbol id="i-qr" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM20 14v7M14 20h3"/></g></symbol>
+  <symbol id="i-mapa" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></g></symbol>
+  <symbol id="i-reloj" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></symbol>
+  <symbol id="i-tel" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2z"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6"/></g></symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <span class="logo"><span class="tiles"><span>R</span><span class="y">y</span><span>F</span></span><span class="cal">CALZADOS</span></span>
+    <div class="acc"><a class="pill" href="#catalogo">Catálogo</a></div>
+  </div>
+  <nav class="nav" id="nav">
+    <a href="#secciones">Secciones</a><a href="#catalogo">Modelos</a><a href="#pagos">Pagos y envíos</a><a href="#historia">Historia</a><a href="#opiniones">Opiniones</a><a href="#local">Local</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="wrap grid">
+    <div>
+      <a class="rating" href="#opiniones"><span class="st">★★★★★</span> 4,8 en Google</a>
+      <h1 class="anton">Pisá <span class="f">fuerte.</span><br><span class="out">Pisá con estilo.</span></h1>
+      <p class="lead">Calzado e indumentaria en tendencia para mujer, hombre y niños. Elegí tu modelo, tu talle y pedilo por WhatsApp. Envíos a todo el país.</p>
+      <div class="cta">
+        <a class="btn btn-f" href="#secciones">Ver por sección</a>
+        <button class="btn btn-o demo" data-msg="Hola RyF! Vi su página y quiero hacer una consulta.">
+          <svg class="ico"><use href="#wa"/></svg>Escribinos por WhatsApp</button>
+      </div>
+    </div>
+    <div class="foto">
+      <img src="../img/local-noche.jpg" alt="Frente del local RyF Calzados de noche">
+      <div class="badge"><span>📍 Necochea y Moreno</span><span><b>Envíos</b> a todo el país</span></div>
+    </div>
+  </div>
+  <div class="marquee" aria-hidden="true"><div>
+    Mujer<span>●</span>Hombre<span>●</span>Niños<span>●</span>Verano<span>●</span>Deportivo<span>●</span>Mochilas<span>●</span>Envíos a todo el país<span>●</span>
+    Mujer<span>●</span>Hombre<span>●</span>Niños<span>●</span>Verano<span>●</span>Deportivo<span>●</span>Mochilas<span>●</span>Envíos a todo el país<span>●</span>
+  </div></div>
+</div>
+
+<main class="wrap">
+  <section id="secciones">
+    <h2 class="h2 anton rv">Elegí tu <span class="f">sección</span></h2>
+    <p class="sub rv">Tocá una sección y te mostramos los modelos.</p>
+    <div class="secs">
+      <button class="sec rv" data-ir="mujer"><img src="../img/z-plataforma.jpg" alt="" style="object-position:50% 20%"><span class="t"><b>Mujer</b><small>Ver modelos <span class="flecha">→</span></small></span></button>
+      <button class="sec rv" data-ir="hombre"><img src="../img/z-negra.jpg" alt=""><span class="t"><b>Hombre</b><small>Ver modelos <span class="flecha">→</span></small></span></button>
+      <button class="sec rv" data-ir="ninos"><img src="../img/ninos.jpg" alt=""><span class="t"><b>Niños</b><small>Ver modelos <span class="flecha">→</span></small></span></button>
+      <button class="sec rv" data-ir="verano"><img src="../img/z-urbana.jpg" alt=""><span class="t"><b>Verano</b><small>Ver modelos <span class="flecha">→</span></small></span></button>
+      <button class="sec rv" data-ir="deportivo"><img src="../img/z-running.jpg" alt=""><span class="t"><b>Deportivo</b><small>Ver modelos <span class="flecha">→</span></small></span></button>
+      <button class="sec icono rv" data-ir="mochilas"><span class="em">🎒</span><span class="t"><b>Mochilas</b><small>Juveniles y primaria <span class="flecha">→</span></small></span></button>
+    </div>
+  </section>
+
+  <section id="catalogo">
+    <h2 class="h2 anton rv">Los <span class="f">modelos</span></h2>
+    <p class="sub rv">Tocá un modelo, elegí tu talle y te llega la consulta armada por WhatsApp.</p>
+    <div class="filtros"><div class="fila" id="filtros"></div></div>
+    <div class="grid-prod" id="grid"></div>
+  </section>
+
+  <section id="pagos">
+    <h2 class="h2 anton rv">Pagá <span class="f">como quieras</span></h2>
+    <span class="chip-ej rv">Ejemplo · se completa con tus medios de pago</span>
+    <div class="pagos">
+      <div class="pago rv"><span class="c"><svg class="ico"><use href="#i-cash"/></svg></span><b>Efectivo</b><span>En el local</span></div>
+      <div class="pago rv"><span class="c"><svg class="ico"><use href="#i-transf"/></svg></span><b>Transferencia</b><span>Para compras con envío</span></div>
+      <div class="pago rv"><span class="c"><svg class="ico"><use href="#i-card"/></svg></span><b>Débito y crédito</b><span>Consultá cuotas</span></div>
+      <div class="pago rv"><span class="c"><svg class="ico"><use href="#i-qr"/></svg></span><b>QR / billeteras</b><span>Pagás con el celular</span></div>
+    </div>
+    <div class="envio rv"><span class="c"><svg class="ico" style="width:28px;height:28px"><use href="#i-envio"/></svg></span><div><b>Envíos a todo el país</b><p>Comprás desde donde estés y te lo mandamos.</p></div></div>
+  </section>
+
+  <section id="historia">
+    <h2 class="h2 anton rv">La historia <span class="f">detrás de RyF</span></h2>
+    <span class="chip-ej rv">Ejemplo · la historia la escribimos con vos</span>
+    <div class="historia">
+      <div class="foto rv"><img src="../img/local.jpg" alt="Interior del local RyF Calzados"><div class="firma"><b>Rocío Oviedo</b><span>Fundadora de RyF Calzados</span></div></div>
+      <div class="rv">
+        <blockquote>Acá va tu historia, contada por vos: cómo empezó RyF, por qué elegiste el calzado y qué querés que sienta cada clienta que entra al local.</blockquote>
+        <div class="stats">
+          <div class="stat"><b>13,4K</b><span>seguidores en Instagram</span></div>
+          <div class="stat"><b>4,8★</b><span>en Google</span></div>
+          <div class="stat"><b>🇦🇷</b><span>envíos a todo el país</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="opiniones">
+    <h2 class="h2 anton rv">Lo que <span class="f">dicen</span></h2>
+    <p class="sub rv">Opiniones reales de clientas y clientes en Google.</p>
+    <div class="testis">
+      <div class="testi rv"><span class="st">★★★★★</span><p>“Fabuloso, atención super, precios accesibles, muy buena calidad de la mercadería, variedad.”</p><div class="quien"><span class="av">M</span><div><b>María Cecilia W.</b><span>Opinión en Google</span></div></div></div>
+      <div class="testi rv"><span class="st">★★★★★</span><p>“Excelente atención.”</p><div class="quien"><span class="av">J</span><div><b>Javier L.</b><span>Opinión en Google</span></div></div></div>
+      <a class="testi mas rv" style="text-decoration:none;color:inherit" href="https://www.google.com/maps/search/?api=1&query=R%20y%20F%20Calzados%20Necochea%202170%20Olavarr%C3%ADa"><b class="n">4,8</b><span style="color:var(--sub);font-weight:700">Promedio en Google · ver todas las opiniones →</span></a>
+    </div>
+  </section>
+
+  <section id="faq">
+    <h2 class="h2 anton rv">Preguntas <span class="f">frecuentes</span></h2>
+    <div style="margin-top:20px">
+      <details class="rv"><summary>¿Hacen envíos?</summary><p>Sí, enviamos a todo el país. Escribinos por WhatsApp con tu modelo, tu talle y tu ciudad.</p></details>
+      <details class="rv"><summary>¿Cómo sé si hay mi talle?</summary><p>Elegí el modelo y tu talle acá en la página: te llega la consulta armada por WhatsApp y te confirmamos el stock.</p></details>
+      <details class="rv"><summary>¿Puedo ir a probármelas?</summary><p>¡Claro! Estamos en Necochea y Moreno, de lunes a sábado de 9 a 20:30.</p></details>
+    </div>
+  </section>
+
+  <section id="local">
+    <h2 class="h2 anton rv">Vení al <span class="f">local</span></h2>
+    <div class="local" style="margin-top:20px">
+      <div class="datos rv">
+        <div class="dato"><span class="c"><svg class="ico"><use href="#i-mapa"/></svg></span><span>Necochea 2170 (y Moreno)<small>Olavarría, Buenos Aires</small></span></div>
+        <div class="dato"><span class="c"><svg class="ico"><use href="#i-reloj"/></svg></span><span>Lunes a sábado<small>de 9 a 20:30 h</small></span></div>
+        <div class="dato"><span class="c"><svg class="ico"><use href="#i-tel"/></svg></span><span>2284 38-0194<small>Teléfono del local</small></span></div>
+        <a class="btn btn-o" href="https://www.google.com/maps/search/?api=1&query=R%20y%20F%20Calzados%20Necochea%202170%20Olavarr%C3%ADa"><svg class="ico"><use href="#i-mapa"/></svg>Cómo llegar</a>
+      </div>
+      <iframe class="mapa rv" loading="lazy" title="Mapa de RyF Calzados" src="https://maps.google.com/maps?q=-36.8876701,-60.3252992&z=16&output=embed"></iframe>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span class="logo col"><span class="tiles"><span>R</span><span class="y">y</span><span>F</span></span><span class="cal">CALZADOS</span></span>
+  <div>Calzado e indumentaria en tendencia · Olavarría</div>
+  <div class="soc"><a href="https://www.instagram.com/rociooviedo49/" aria-label="Instagram"><svg class="ico"><use href="#i-ig"/></svg></a><button class="demo" style="width:44px;height:44px;border-radius:14px;border:1px solid #333;display:flex;align-items:center;justify-content:center" aria-label="WhatsApp" data-msg="Hola RyF! Vi su página y quiero hacer una consulta."><svg class="ico"><use href="#wa"/></svg></button></div>
+  <span class="yagua">Muestra de página hecha por Yaguá · Fotos y modelos de ejemplo tomados de @rociooviedo49 · <a href="https://wa.me/5492284320122?text=Hola!%20Vi%20la%20muestra%20del%20cat%C3%A1logo%20de%20RyF%20Calzados%20y%20quiero%20saber%20m%C3%A1s.">Escribile a Yaguá</a></span>
+</footer>
+
+<div class="fijo"><div class="in"><button class="btn btn-f demo" style="width:100%" data-msg="Hola RyF! Vi su página y quiero hacer una consulta."><svg class="ico"><use href="#wa"/></svg>Comprar por WhatsApp</button></div></div>
+
+<div class="hoja" id="hoja" aria-hidden="true">
+  <div class="fondo" data-cerrar></div>
+  <div class="panel" role="dialog" aria-modal="true" aria-labelledby="pNombre">
+    <button class="cerrar" data-cerrar aria-label="Cerrar">✕</button>
+    <div class="pimg" id="pImg"></div>
+    <div class="pinfo">
+      <span class="cat" id="pCat"></span>
+      <h3 id="pNombre"></h3>
+      <p id="pDesc"></p>
+      <div class="lbl">Elegí tu talle</div>
+      <div class="talles" id="pTalles"></div>
+      <div class="aviso-talle" id="avisoTalle">Elegí un talle para seguir 👆</div>
+      <div class="lbl">Color</div>
+      <p>Consultá los colores disponibles en el mensaje.</p>
+      <button class="btn btn-f" id="pPedir" style="width:100%;margin-top:18px"><svg class="ico"><use href="#wa"/></svg>Pedir por WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+<dialog id="d">
+  <h3>Así te llega al WhatsApp</h3>
+  <div class="burbuja" id="burbuja"></div>
+  <p>En tu página, este botón abre tu WhatsApp con la consulta ya armada: modelo, sección y talle. El cliente solo toca enviar.</p>
+  <div class="acc">
+    <a class="btn btn-f" href="https://wa.me/5492284320122?text=Hola!%20Vi%20la%20muestra%20del%20cat%C3%A1logo%20de%20RyF%20Calzados%20y%20quiero%20saber%20m%C3%A1s.">Quiero esta página</a>
+    <button class="btn btn-o" onclick="d.close()">Seguir mirando</button>
+  </div>
+</dialog>
+
+<script>
+const SECCIONES = [
+  {id:'todos', n:'Todos'},{id:'mujer', n:'Mujer'},{id:'hombre', n:'Hombre'},{id:'ninos', n:'Niños'},
+  {id:'verano', n:'Verano'},{id:'deportivo', n:'Deportivo'},{id:'mochilas', n:'Mochilas'}
+];
+const ADULTO = ['35','36','37','38','39','40','41','42','43','44'];
+const NINOS = ['22','24','26','28','30','32','34'];
+// Modelos de ejemplo tomados de los posteos de @rociooviedo49. En la página final se cargan los reales.
+const MODELOS = [
+  {id:'urbana-verde', n:'Urbana blanca y verde', img:'z-blanca.jpg', s:['mujer','hombre'], d:'Clásica urbana en blanco con detalles en verde.', t:ADULTO, tag:'Nuevo'},
+  {id:'running', n:'Running fluo', img:'z-running.jpg', s:['deportivo','mujer','hombre'], d:'Deportiva en tonos fluo.', t:ADULTO, tag:'Deportivo'},
+  {id:'plataforma', n:'Sandalia plataforma con cadena', img:'z-plataforma.jpg', s:['mujer','verano'], d:'Plataforma negra con detalle de cadena.', t:ADULTO.slice(0,7), tag:'Tendencia', pos:'50% 15%'},
+  {id:'beige', n:'Urbana beige', img:'z-urbana.jpg', s:['mujer','verano'], d:'Tonos claros para combinar con todo.', t:ADULTO},
+  {id:'skate', n:'Skate marrón', img:'z-skate.jpg', s:['hombre','mujer'], d:'Estilo skate en marrón.', t:ADULTO},
+  {id:'negra', n:'Urbana negra', img:'z-negra.jpg', s:['hombre','deportivo'], d:'Negra con suela blanca, un clásico.', t:ADULTO},
+  {id:'kids', n:'Las más cancheras · Kids', img:'ninos.jpg', s:['ninos'], d:'Para los más fachetitos de la casa.', t:NINOS, tag:'Niños'},
+  {id:'mochila-juvenil', n:'Mochila juvenil', em:'🎒', s:['mochilas'], d:'Modelos juveniles para el día a día.', t:['Única']},
+  {id:'mochila-primaria', n:'Mochila primaria', em:'🎒', s:['mochilas','ninos'], d:'Para arrancar las clases con todo.', t:['Única']}
+];
+let filtro='todos', actual=null, talle=null;
+const $=s=>document.querySelector(s);
+const nombreSec=id=>(SECCIONES.find(x=>x.id===id)||{}).n||'';
+
+function pintarFiltros(){
+  $('#filtros').innerHTML = SECCIONES.map(s=>`<button data-f="${s.id}" class="${s.id===filtro?'on':''}">${s.n}</button>`).join('');
+  $('#filtros').querySelectorAll('button').forEach(b=>b.onclick=()=>{filtro=b.dataset.f;pintarFiltros();pintarGrid();});
+}
+function pintarGrid(){
+  const lista = MODELOS.filter(m=>filtro==='todos'||m.s.includes(filtro));
+  $('#grid').innerHTML = lista.length ? lista.map(m=>`
+    <button class="prod" data-id="${m.id}">
+      <span class="img">${m.img?`<img src="../img/${m.img}" alt="${m.n}" loading="lazy" style="object-position:${m.pos||'50% 50%'}">`:`<span class="em">${m.em}</span>`}${m.tag?`<span class="tag">${m.tag}</span>`:''}</span>
+      <span class="info"><h3>${m.n}</h3><span class="cat">${m.s.map(nombreSec).join(' · ')}</span><span class="ver">Ver modelo <i>→</i></span></span>
+    </button>`).join('') : '<p class="vacio">Pronto vas a ver modelos acá.</p>';
+  $('#grid').querySelectorAll('.prod').forEach(b=>b.onclick=()=>abrir(b.dataset.id));
+}
+function abrir(id){
+  actual = MODELOS.find(m=>m.id===id); talle=null;
+  $('#pImg').innerHTML = actual.img?`<img src="../img/${actual.img}" alt="${actual.n}" style="object-position:${actual.pos||'50% 50%'}">`:`<span class="em">${actual.em}</span>`;
+  $('#pCat').textContent = actual.s.map(nombreSec).join(' · ');
+  $('#pNombre').textContent = actual.n;
+  $('#pDesc').textContent = actual.d;
+  $('#avisoTalle').style.display='none';
+  if(actual.t.length===1) talle=actual.t[0];
+  $('#pTalles').innerHTML = actual.t.map(t=>`<button class="${t===talle?'on':''}">${t}</button>`).join('');
+  $('#pTalles').querySelectorAll('button').forEach(b=>b.onclick=()=>{talle=b.textContent;$('#pTalles').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));$('#avisoTalle').style.display='none';});
+  $('#hoja').classList.add('open'); $('#hoja').setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+}
+function cerrar(){ $('#hoja').classList.remove('open'); $('#hoja').setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+document.querySelectorAll('[data-cerrar]').forEach(e=>e.onclick=cerrar);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')cerrar();});
+
+function mostrarMensaje(txt){ $('#burbuja').textContent=txt; $('#d').showModal(); }
+$('#pPedir').onclick=()=>{
+  if(!talle){ $('#avisoTalle').style.display='block'; return; }
+  const sec = filtro!=='todos' ? nombreSec(filtro) : nombreSec(actual.s[0]);
+  const msg = `Hola RyF! 👟 Me interesa este modelo:\n• ${actual.n}\n• Sección: ${sec}\n• Talle: ${talle}\n¿Tienen stock?`;
+  cerrar(); mostrarMensaje(msg);
+};
+document.querySelectorAll('.demo').forEach(b=>b.addEventListener('click',()=>mostrarMensaje(b.dataset.msg)));
+document.querySelectorAll('[data-ir]').forEach(b=>b.onclick=()=>{filtro=b.dataset.ir;pintarFiltros();pintarGrid();document.getElementById('catalogo').scrollIntoView({behavior:'smooth'});});
+
+const io = new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(e=>io.observe(e));
+setTimeout(()=>document.querySelectorAll('.rv').forEach(e=>e.classList.add('in')),2500);
+
+pintarFiltros(); pintarGrid();
+</script>
+</body>
+</html>

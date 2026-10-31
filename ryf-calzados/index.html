@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>RyF Calzados · Calzado e indumentaria en tendencia · Olavarría</title>
+<meta name="description" content="RyF Calzados: zapatillas, indumentaria y mochilas en Necochea y Moreno, Olavarría. Envíos a todo el país. Comprá fácil por WhatsApp.">
+<meta name="theme-color" content="#0B0B0B">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--negro:#0B0B0B;--gris:#161616;--gris2:#242424;--fluor:#C6F31A;--fluorOsc:#9BC20A;--blanco:#F5F5F0;--wa:#1FAF38}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--negro);color:var(--blanco);font:16px/1.55 Inter,system-ui,sans-serif;padding-bottom:92px;overflow-x:hidden}
+img{display:block;max-width:100%}
+.anton{font-family:Anton,Impact,sans-serif;font-weight:400;letter-spacing:.01em;text-transform:uppercase}
+.wrap{max-width:720px;margin:0 auto;padding:0 18px}
+.ico{width:22px;height:22px;flex:0 0 22px}
+.f{color:var(--fluor)}
+
+/* logo RyF en cuadritos */
+.logo{display:inline-flex;flex-direction:column;align-items:center;gap:4px}
+.logo .tiles{display:flex;gap:4px}
+.logo .tiles span{width:var(--t,34px);height:var(--t,34px);background:var(--fluor);color:var(--negro);font:900 calc(var(--t,34px)*.62) Georgia,serif;display:flex;align-items:center;justify-content:center;border-radius:3px;box-shadow:0 0 18px rgba(198,243,26,.45)}
+.logo .tiles span.y{font-style:italic;font-weight:700;font-size:calc(var(--t,34px)*.5)}
+.logo .cal{background:var(--fluor);color:var(--negro);font:400 calc(var(--t,34px)*.46) Anton;letter-spacing:.14em;padding:2px 10px 1px;border-radius:3px;box-shadow:0 0 18px rgba(198,243,26,.45)}
+
+.barra{position:sticky;top:0;z-index:20;background:rgba(11,11,11,.92);backdrop-filter:blur(10px);border-bottom:1px solid #222}
+.barra .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.barra .logo{--t:22px;flex-direction:row;gap:6px}
+.barra .logo .cal{font-size:12px;padding:3px 7px}
+.barra a{background:var(--fluor);color:var(--negro);font-weight:900;text-decoration:none;padding:9px 16px;border-radius:999px;font-size:14px}
+
+.hero{position:relative;overflow:hidden;padding-top:26px;background:radial-gradient(90% 50% at 85% 0%,rgba(198,243,26,.16),transparent 70%)}
+.hero .foto-local{margin-top:22px;border-radius:20px;overflow:hidden;border:1px solid #2a2a2a;position:relative}.hero .foto-local img{width:100%;height:300px;object-fit:cover;object-position:50% 40%}.hero .foto-local span{position:absolute;left:12px;bottom:12px;background:var(--fluor);color:var(--negro);font:900 13px Inter;padding:5px 11px;border-radius:999px}
+
+.hero .wrap{position:relative;z-index:1;padding-bottom:28px;width:100%}
+.hero .logo{--t:40px;margin-bottom:16px}
+.hero h1{font-size:clamp(40px,12vw,62px);line-height:.95;margin-bottom:10px}
+.hero p{font-weight:600;color:#d6d6cf;max-width:460px;margin-bottom:18px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.tags span{border:1px solid var(--fluor);color:var(--fluor);border-radius:999px;padding:5px 12px;font-weight:800;font-size:13px}
+.botones{display:grid;gap:10px}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:56px;border-radius:14px;border:0;cursor:pointer;font:900 17px Inter,sans-serif;text-decoration:none;padding:0 18px}
+.btn:active{transform:translateY(2px)}
+.btn-fluor{background:var(--fluor);color:var(--negro);box-shadow:0 0 24px rgba(198,243,26,.35)}
+.btn-borde{background:transparent;color:var(--blanco);border:2px solid #3a3a3a}
+.btn .w{width:26px;height:26px;flex:0 0 26px}
+
+section{padding:42px 0 6px}
+.titulo{font-size:clamp(34px,9vw,46px);line-height:1}
+.bajada{color:#a9a9a2;font-weight:600;margin:8px 0 20px}
+
+/* destacados */
+.carrusel{display:grid;grid-auto-flow:column;grid-auto-columns:72%;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;margin:0 -18px;padding-left:18px;padding-right:18px}
+.carrusel::-webkit-scrollbar{display:none}
+.prod{scroll-snap-align:start;background:var(--gris);border-radius:18px;overflow:hidden;border:1px solid #232323}
+.prod img{width:100%;aspect-ratio:3/4;object-fit:cover}
+.prod .info{padding:14px}
+.prod h3{font:800 16px Inter;margin-bottom:2px}
+.prod p{color:#a9a9a2;font-size:13.5px;margin-bottom:12px}
+.prod button{width:100%;min-height:44px;font-size:15px}
+
+/* categorías */
+.cats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cat{position:relative;border-radius:18px;overflow:hidden;min-height:170px;display:flex;align-items:flex-end;padding:14px;background:var(--gris2);border:1px solid #2a2a2a;cursor:pointer;text-align:left;color:inherit;font:inherit}
+.cat img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
+.cat:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(0,0,0,.85))}
+.cat b{position:relative;z-index:1;font:400 24px Anton;text-transform:uppercase;line-height:1}
+.cat small{position:relative;z-index:1;display:block;color:var(--fluor);font-weight:800;font-size:13px;margin-top:4px}
+.cat .txt{position:relative;z-index:1}
+.cat.sinfoto{background:linear-gradient(135deg,#1c1c1c,#0f0f0f)}
+.cat.sinfoto .big{position:absolute;right:10px;top:10px;font:400 54px Anton;color:#222}
+
+/* beneficios */
+.benef{display:grid;gap:10px}
+.b{display:flex;gap:14px;align-items:center;background:var(--gris);border-radius:16px;padding:16px;border:1px solid #232323}
+.b .c{width:48px;height:48px;border-radius:14px;background:rgba(198,243,26,.12);color:var(--fluor);display:flex;align-items:center;justify-content:center;flex:0 0 48px}
+.b h3{font:800 17px Inter}
+.b p{color:#a9a9a2;font-size:14px}
+
+/* pasos */
+.pasos{display:grid;gap:10px;counter-reset:p}
+.paso{display:flex;gap:14px;align-items:center;background:var(--gris);border-radius:16px;padding:14px 16px}
+.paso b{flex:0 0 42px;height:42px;border-radius:12px;background:var(--fluor);color:var(--negro);display:flex;align-items:center;justify-content:center;font:400 22px Anton}
+.paso h3{font:800 16px Inter}
+.paso p{color:#a9a9a2;font-size:14px}
+
+/* local */
+.local{border-radius:20px;overflow:hidden;background:var(--gris);border:1px solid #232323}
+.local img{width:100%;height:260px;object-fit:cover}
+.local .info{padding:18px;display:grid;gap:12px}
+.dato{display:flex;gap:12px;align-items:center;font-weight:800}
+.dato .c{width:42px;height:42px;border-radius:12px;background:rgba(198,243,26,.12);color:var(--fluor);display:flex;align-items:center;justify-content:center;flex:0 0 42px}
+.dato small{display:block;color:#a9a9a2;font-weight:600}
+.mapa{width:100%;height:220px;border:0;border-radius:14px;filter:grayscale(1) invert(.9) contrast(.9)}
+.ig{display:flex;align-items:center;gap:14px;background:var(--gris);border-radius:16px;padding:14px 16px;text-decoration:none;color:inherit;margin-top:12px;border:1px solid #232323}
+.ig .c{width:46px;height:46px;border-radius:12px;background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF);display:flex;align-items:center;justify-content:center;color:#fff;flex:0 0 46px}
+
+footer{text-align:center;padding:34px 18px 10px;font-size:13px;color:#7d7d77}
+footer .logo{--t:30px;margin-bottom:12px}
+.yagua{display:block;margin-top:12px;font-size:12px;color:#5f5f5a}
+.yagua a{color:#5f5f5a}
+
+.fijo{position:fixed;left:0;right:0;bottom:0;z-index:30;background:linear-gradient(transparent,var(--negro) 35%);padding:12px 12px 14px}
+.fijo .btn{max-width:720px;margin:0 auto}
+
+dialog{border:0;border-radius:22px;padding:24px;max-width:340px;margin:auto;background:#141414;color:var(--blanco);border:1px solid #2a2a2a}
+dialog::backdrop{background:rgba(0,0,0,.75)}
+dialog h3{font:400 26px Anton;text-transform:uppercase;color:var(--fluor)}
+dialog .burbuja{background:#DCF8C6;color:#111;border-radius:14px 14px 2px 14px;padding:12px 14px;margin:14px 0;font-size:15px}
+dialog p{font-size:14px;color:#b5b5ae}
+dialog .acc{display:grid;gap:8px;margin-top:16px}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.6-.1 1.1z"/></symbol>
+  <symbol id="i-envio" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></g></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 5h16v11H9l-5 4z"/></symbol>
+  <symbol id="i-tienda" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 9l2-5h14l2 5M4 9v11h16V9M3 9h18M10 20v-6h4v6"/></g></symbol>
+  <symbol id="i-mapa" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></g></symbol>
+  <symbol id="i-reloj" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6"/></g></symbol>
+</svg>
+
+<header class="barra"><div class="wrap">
+  <span class="logo"><span class="tiles"><span>R</span><span class="y">y</span><span>F</span></span><span class="cal">CALZADOS</span></span>
+  <a href="#local">Cómo llegar</a>
+</div></header>
+
+<div class="hero">
+  <div class="wrap">
+    <span class="logo"><span class="tiles"><span>R</span><span class="y">y</span><span>F</span></span><span class="cal">CALZADOS</span></span>
+    <h1 class="anton">Calzado e <span class="f">indumentaria</span> en tendencia</h1>
+    <p>Las zapatillas que se usan, en Necochea y Moreno, Olavarría. Comprá fácil y rápido por WhatsApp.</p>
+    <div class="tags"><span>Envíos a todo el país</span><span>Lunes a sábado</span><span>Compra por WhatsApp</span></div>
+    <div class="botones">
+      <button class="btn btn-fluor demo" data-msg="Hola! Vi la página de RyF. ¿Tienen las zapatillas blancas con verde en talle 38?"><svg class="w"><use href="#wa"/></svg>Comprar por WhatsApp</button>
+      <a class="btn btn-borde" href="#lo-nuevo">Ver lo nuevo</a>
+    </div>
+    <div class="foto-local"><img src="img/local-noche.jpg" alt="Frente del local RyF Calzados"><span>Necochea y Moreno</span></div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section id="lo-nuevo">
+    <h2 class="titulo anton">Lo <span class="f">nuevo</span></h2>
+    <p class="bajada">Deslizá y consultá por tu talle.</p>
+    <div class="carrusel">
+      <div class="prod"><img src="img/z-blanca.jpg" alt="Zapatillas blancas con verde"><div class="info"><h3>Urbanas blancas y verdes</h3><p>Consultá talles y colores</p><button class="btn btn-fluor demo" data-msg="Hola! ¿Tienen las zapatillas blancas con verde en talle 38?"><svg class="w"><use href="#wa"/></svg>Consultar</button></div></div>
+      <div class="prod"><img src="img/z-running.jpg" alt="Zapatillas running"><div class="info"><h3>Running</h3><p>Consultá talles y colores</p><button class="btn btn-fluor demo" data-msg="Hola! Quiero consultar por las zapatillas de running que subieron. ¿Qué talles tienen?"><svg class="w"><use href="#wa"/></svg>Consultar</button></div></div>
+      <div class="prod"><img src="img/z-skate.jpg" alt="Zapatillas skate"><div class="info"><h3>Estilo skate</h3><p>Consultá talles y colores</p><button class="btn btn-fluor demo" data-msg="Hola! ¿Tienen las zapatillas marrones estilo skate en talle 40?"><svg class="w"><use href="#wa"/></svg>Consultar</button></div></div>
+      <div class="prod"><img src="img/z-negra.jpg" alt="Zapatillas negras"><div class="info"><h3>Negras urbanas</h3><p>Consultá talles y colores</p><button class="btn btn-fluor demo" data-msg="Hola! ¿Me pasás precio de las zapatillas negras? Busco talle 42."><svg class="w"><use href="#wa"/></svg>Consultar</button></div></div>
+      <div class="prod"><img src="img/z-urbana.jpg" alt="Zapatillas urbanas beige"><div class="info"><h3>Urbanas clásicas</h3><p>Consultá talles y colores</p><button class="btn btn-fluor demo" data-msg="Hola! ¿Tienen las zapatillas beige en talle 37?"><svg class="w"><use href="#wa"/></svg>Consultar</button></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="titulo anton">¿Qué <span class="f">buscás?</span></h2>
+    <p class="bajada">Tocá y te ayudamos por WhatsApp.</p>
+    <div class="cats">
+      <button class="cat demo" data-msg="Hola! Busco zapatillas para mí, talle 39. ¿Qué tienen?"><img src="img/z-blanca.jpg" alt=""><span class="txt"><b>Zapatillas</b><small>Urbanas y deportivas</small></span></button>
+      <button class="cat demo" data-msg="Hola! Quiero ver qué tienen de indumentaria."><img src="img/local.jpg" alt=""><span class="txt"><b>Indumentaria</b><small>Lo que está en tendencia</small></span></button>
+      <button class="cat demo" data-msg="Hola! Busco zapatillas para mi hijo, talle 32."><img src="img/ninos.jpg" alt=""><span class="txt"><b>Para los más chicos</b><small>Las más cancheras</small></span></button>
+      <button class="cat sinfoto demo" data-msg="Hola! Busco una mochila para la primaria. ¿Qué modelos tienen?"><span class="big">🎒</span><span class="txt"><b>Mochilas</b><small>Juveniles y primaria</small></span></button>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="titulo anton">Comprar es <span class="f">fácil</span></h2>
+    <div class="benef" style="margin-top:18px">
+      <div class="b"><span class="c"><svg class="ico"><use href="#i-envio"/></svg></span><div><h3>Envíos a todo el país</h3><p>Comprás desde donde estés.</p></div></div>
+      <div class="b"><span class="c"><svg class="ico"><use href="#i-chat"/></svg></span><div><h3>Atención por WhatsApp</h3><p>Fotos, talles y precios al instante.</p></div></div>
+      <div class="b"><span class="c"><svg class="ico"><use href="#i-tienda"/></svg></span><div><h3>Local en Olavarría</h3><p>Vení a probártelas.</p></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="titulo anton">En <span class="f">3 pasos</span></h2>
+    <div class="pasos" style="margin-top:18px">
+      <div class="paso"><b>1</b><div><h3>Elegí lo que te gusta</h3><p>Mirá lo nuevo o contanos qué buscás.</p></div></div>
+      <div class="paso"><b>2</b><div><h3>Escribinos tu talle</h3><p>Te confirmamos stock y precio.</p></div></div>
+      <div class="paso"><b>3</b><div><h3>Retirás o te lo enviamos</h3><p>En el local o a cualquier punto del país.</p></div></div>
+    </div>
+  </section>
+
+  <section id="local">
+    <h2 class="titulo anton">Visitanos</h2>
+    <div class="local" style="margin-top:18px">
+      <img src="img/local.jpg" alt="Interior del local RyF Calzados">
+      <div class="info">
+        <div class="dato"><span class="c"><svg class="ico"><use href="#i-mapa"/></svg></span><span>Necochea y Moreno<small>Olavarría, Buenos Aires</small></span></div>
+        <div class="dato"><span class="c"><svg class="ico"><use href="#i-reloj"/></svg></span><span>Lunes a sábado<small>de 9 a 20:30 h</small></span></div>
+        <iframe class="mapa" loading="lazy" title="Mapa" src="https://maps.google.com/maps?q=Necochea%20y%20Moreno,%20Olavarr%C3%ADa,%20Buenos%20Aires&z=16&output=embed"></iframe>
+        <a class="btn btn-borde" href="https://www.google.com/maps/search/?api=1&query=Necochea%20y%20Moreno%2C%20Olavarr%C3%ADa"><svg class="ico"><use href="#i-mapa"/></svg>Abrir en Google Maps</a>
+      </div>
+    </div>
+    <a class="ig" href="https://www.instagram.com/rociooviedo49/"><span class="c"><svg class="ico"><use href="#i-ig"/></svg></span><span><b>@rociooviedo49</b><br><span style="color:#a9a9a2;font-weight:600">Novedades, sorteos y lo último que entró</span></span></a>
+  </section>
+</main>
+
+<footer>
+  <span class="logo"><span class="tiles"><span>R</span><span class="y">y</span><span>F</span></span><span class="cal">CALZADOS</span></span><br>
+  RyF Calzados · Necochea y Moreno · Olavarría
+  <span class="yagua">Muestra de página hecha por Yaguá · <a href="https://wa.me/5492284320122?text=Hola!%20Vi%20la%20muestra%20de%20p%C3%A1gina%20de%20RyF%20Calzados%20y%20quiero%20saber%20m%C3%A1s.">Escribile a Yaguá</a></span>
+</footer>
+
+<div class="fijo"><button class="btn btn-fluor demo" style="width:100%" data-msg="Hola! Vi la página de RyF. ¿Tienen las zapatillas blancas con verde en talle 38?"><svg class="w"><use href="#wa"/></svg>Comprar por WhatsApp</button></div>
+
+<dialog id="d">
+  <h3>Así te llega al WhatsApp</h3>
+  <div class="burbuja" id="burbuja"></div>
+  <p>En tu página, este botón abre tu WhatsApp con la consulta ya escrita. El cliente solo toca enviar.</p>
+  <div class="acc">
+    <a class="btn btn-fluor" href="https://wa.me/5492284320122?text=Hola!%20Vi%20la%20muestra%20de%20p%C3%A1gina%20de%20RyF%20Calzados%20y%20quiero%20saber%20m%C3%A1s.">Quiero esta página</a>
+    <button class="btn btn-borde" onclick="d.close()">Seguir mirando</button>
+  </div>
+</dialog>
+<script>
+document.querySelectorAll('.demo').forEach(b=>b.addEventListener('click',()=>{document.getElementById('burbuja').textContent=b.dataset.msg;document.getElementById('d').showModal()}));
+</script>
+</body>
+</html>

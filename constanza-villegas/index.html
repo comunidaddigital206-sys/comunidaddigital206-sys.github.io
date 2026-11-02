@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Constanza Villegas · Psicóloga en Salta</title>
+<meta name="description" content="Lic. Constanza Villegas, psicóloga. Psicoterapia para adolescencias, juventudes y adulteces. Atención presencial en Salta Capital y virtual.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;600&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --violeta:#6E5BB8; --violetaOsc:#3F3279; --lila:#B9A9E3; --lilaClaro:#EFEBF9;
+  --gris:#EDECF0; --malva:#8E7C9B; --tinta:#2E2A3D; --suave:#5E5872; --blanco:#fff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito Sans',system-ui,sans-serif;color:var(--tinta);background:var(--gris);line-height:1.55;padding-bottom:92px}
+a{color:inherit}
+.wrap{max-width:560px;margin:0 auto;padding:0 20px}
+h1,h2,.serif{font-family:'Comfortaa',sans-serif;font-weight:400;letter-spacing:-.01em}
+h2{font-size:26px;color:var(--violetaOsc);line-height:1.2;margin-bottom:10px}
+.kicker{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--violeta);margin-bottom:8px}
+section{padding:44px 0}
+.muestra{background:var(--violetaOsc);color:#fff;font-size:12.5px;text-align:center;padding:7px 12px;font-weight:600}
+.muestra a{color:var(--lila)}
+
+/* hero */
+.hero{position:relative;overflow:hidden;background:var(--gris);padding:36px 0 44px}
+.geo{position:absolute;top:-30px;right:-60px;width:250px;height:250px;opacity:.95}
+.foto{width:116px;height:116px;border-radius:50%;object-fit:cover;border:5px solid #fff;box-shadow:0 6px 24px rgba(63,50,121,.18);position:relative}
+.hero h1{font-size:44px;line-height:1.02;color:var(--violeta);margin:22px 0 10px;position:relative}
+.hero h1 span{display:block;font-weight:300}
+.mat{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--suave);font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 18px}
+.chip{background:#fff;border:1.5px solid var(--lila);color:var(--violetaOsc);border-radius:99px;padding:5px 12px;font-size:13px;font-weight:700}
+.lead{font-size:18px;color:var(--tinta);max-width:430px}
+.btn{display:flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:14px;padding:15px 18px;font:800 16px 'Nunito Sans',sans-serif;cursor:pointer;text-decoration:none;width:100%}
+.btn-wa{background:#25D366;color:#073B1B}
+.btn-vi{background:var(--violeta);color:#fff}
+.btn-claro{background:#fff;color:var(--violetaOsc);border:1.5px solid var(--lila)}
+.btn .w{width:22px;height:22px}
+.hero .btn{margin-top:22px;max-width:360px}
+
+/* a quién */
+.tarjetas{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+.tj{background:#fff;border-radius:18px;padding:18px 10px;text-align:center}
+.tj .c{width:44px;height:44px;margin:0 auto 10px}
+.tj b{font-family:'Comfortaa';font-weight:600;color:var(--violetaOsc);font-size:14.5px}
+.blanco{background:#fff}
+.lista{list-style:none;display:grid;gap:12px;margin-top:16px}
+.lista li{display:flex;gap:12px;align-items:flex-start}
+.lista .p{flex:none;width:12px;height:12px;border-radius:50%;background:var(--lila);margin-top:7px}
+.lista b{color:var(--violetaOsc)}
+.nota{display:inline-block;background:#FFF3C4;color:#6B5200;border-radius:8px;padding:3px 9px;font-size:12px;font-weight:800;margin-bottom:10px}
+
+/* modalidad */
+.modos{display:grid;gap:12px;margin-top:16px}
+.modo{background:#fff;border-radius:18px;padding:18px;display:flex;gap:14px;align-items:flex-start}
+.modo .ic{flex:none;width:46px;height:46px;border-radius:14px;background:var(--lilaClaro);display:grid;place-items:center;color:var(--violeta)}
+.modo .ic svg{width:24px;height:24px}
+.modo b{font-family:'Comfortaa';font-weight:600;font-size:17px;color:var(--violetaOsc)}
+.modo p{color:var(--suave);font-size:15px}
+.mapa{width:100%;height:190px;border:0;border-radius:18px;margin-top:12px}
+
+/* pasos */
+.pasos{counter-reset:p;display:grid;gap:12px;margin-top:16px}
+.paso{background:var(--lilaClaro);border-radius:18px;padding:16px 16px 16px 60px;position:relative}
+.paso::before{counter-increment:p;content:counter(p);position:absolute;left:16px;top:16px;width:32px;height:32px;border-radius:50%;background:var(--violeta);color:#fff;font:600 15px 'Comfortaa';display:grid;place-items:center}
+.paso b{color:var(--violetaOsc)}
+.paso p{font-size:15px;color:var(--suave)}
+
+/* obras sociales */
+.os{background:#fff;border:2px dashed var(--lila);border-radius:18px;padding:18px;margin-top:14px}
+.os .grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.os .grid span{background:var(--gris);border-radius:10px;padding:7px 12px;font-weight:700;font-size:14px;color:var(--suave)}
+
+/* talleres */
+.taller{background:var(--violetaOsc);color:#fff;border-radius:24px;padding:26px 22px;position:relative;overflow:hidden}
+.taller h2{color:#fff}
+.taller p{color:#DCD5F2}
+.taller .tag{display:inline-block;background:var(--lila);color:var(--violetaOsc);border-radius:99px;padding:4px 12px;font-size:12.5px;font-weight:800;margin:14px 0 16px}
+.taller .deco{position:absolute;right:-40px;bottom:-40px;width:150px;height:150px;opacity:.35}
+
+/* faq */
+details{background:#fff;border-radius:16px;padding:16px 18px;margin-top:10px}
+summary{font-weight:800;color:var(--violetaOsc);cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:10px}
+summary::after{content:'+';font:400 22px 'Comfortaa';line-height:1;color:var(--violeta)}
+details[open] summary::after{content:'–'}
+details p{color:var(--suave);margin-top:8px;font-size:15px}
+
+.ig{display:flex;gap:12px;align-items:center;background:#fff;border-radius:16px;padding:14px 16px;text-decoration:none;margin-top:14px}
+.ig .c{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#F58529,#DD2A7B,#8134AF);display:grid;place-items:center;color:#fff}
+.ig svg{width:22px;height:22px}
+
+footer{text-align:center;padding:34px 20px 20px;color:var(--suave);font-size:14px}
+footer .serif{font-size:20px;color:var(--violeta);display:block;margin-bottom:4px}
+.yagua{display:block;margin-top:14px;font-size:12.5px}
+.yagua a{color:var(--violeta);font-weight:800}
+
+.fijo{position:fixed;left:0;right:0;bottom:0;background:rgba(237,236,240,.94);backdrop-filter:blur(8px);padding:12px 16px calc(12px + env(safe-area-inset-bottom));border-top:1px solid #dcd9e3;z-index:5}
+.fila{max-width:560px;margin:0 auto;display:flex;gap:10px}
+.fila .btn{flex:1}
+.fila .btn-vi{flex:none;width:auto;padding:15px 18px}
+
+dialog{border:0;border-radius:22px;padding:24px;max-width:340px;margin:auto;color:var(--tinta)}
+dialog::backdrop{background:rgba(46,42,61,.6)}
+dialog h3{font-family:'Comfortaa';font-weight:600;font-size:20px;color:var(--violetaOsc)}
+dialog .burbuja{background:#DCF8C6;border-radius:14px 14px 2px 14px;padding:12px 14px;margin:14px 0;font-size:15px}
+dialog p{font-size:14px;color:var(--suave);font-weight:600}
+dialog .acc{display:grid;gap:8px;margin-top:16px}
+@media (max-width:360px){.hero h1{font-size:38px}.tarjetas{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="wa" viewBox="0 0 24 24"><path fill="#fff" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.6-.1 1.1z"/></symbol>
+  <symbol id="i-mapa" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></g></symbol>
+  <symbol id="i-pc" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></g></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6"/></g></symbol>
+</svg>
+
+<div class="muestra">Muestra de página hecha por Yaguá · <a href="https://wa.me/5492284320122?text=Hola!%20Vi%20la%20muestra%20de%20p%C3%A1gina%20de%20Constanza%20Villegas%20y%20quiero%20saber%20m%C3%A1s.">Escribile a Yaguá</a></div>
+
+<header class="hero">
+  <svg class="geo" viewBox="0 0 200 200" aria-hidden="true">
+    <path d="M100 0h100v100A100 100 0 0 1 100 0z" fill="#6E5BB8"/>
+    <circle cx="150" cy="50" r="22" fill="#EFEBF9"/>
+    <path d="M150 38l3 9 9 3-9 3-3 9-3-9-9-3 9-3z" fill="#6E5BB8"/>
+    <path d="M100 100h50a50 50 0 0 1-50 50z" fill="#B9A9E3"/>
+    <circle cx="70" cy="40" r="14" fill="#B9A9E3"/>
+    <circle cx="40" cy="40" r="14" fill="#B9A9E3" opacity=".6"/>
+    <path d="M150 100h50v50a50 50 0 0 1-50-50z" fill="#3F3279"/>
+    <circle cx="175" cy="175" r="18" fill="#B9A9E3" opacity=".7"/>
+  </svg>
+  <div class="wrap">
+    <img class="foto" src="img/perfil.jpg" alt="Constanza Villegas">
+    <h1>Constanza <span>Villegas</span></h1>
+    <div class="mat">Licenciada en Psicología · MP 1631 · MN 91819</div>
+    <div class="chips">
+      <span class="chip">Psicóloga comunitaria</span>
+      <span class="chip">LGBTTIQ+</span>
+      <span class="chip">Presencial y virtual</span>
+    </div>
+    <p class="lead">Un espacio de escucha para empezar tu proceso terapéutico, en Salta o desde donde estés.</p>
+    <button class="btn btn-wa demo" data-msg="Hola Constanza! Quería consultar por un turno para empezar terapia. ¿Tenés disponibilidad presencial o virtual?"><svg class="w"><use href="#wa"/></svg>Pedir turno por WhatsApp</button>
+  </div>
+</header>
+
+<main>
+  <section class="blanco">
+    <div class="wrap">
+      <div class="kicker">Psicoterapia</div>
+      <h2>A quién acompaño</h2>
+      <div class="tarjetas">
+        <div class="tj"><svg class="c" viewBox="0 0 44 44"><circle cx="22" cy="22" r="20" fill="#EFEBF9"/><path d="M22 2a20 20 0 0 1 0 40z" fill="#B9A9E3"/></svg><b>Adolescencias</b></div>
+        <div class="tj"><svg class="c" viewBox="0 0 44 44"><circle cx="22" cy="22" r="20" fill="#EFEBF9"/><path d="M2 22h40A20 20 0 0 1 2 22z" fill="#6E5BB8"/></svg><b>Juventudes</b></div>
+        <div class="tj"><svg class="c" viewBox="0 0 44 44"><circle cx="22" cy="22" r="20" fill="#B9A9E3"/><circle cx="22" cy="22" r="9" fill="#3F3279"/></svg><b>Adulteces</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="kicker">Mi forma de trabajar</div>
+      <h2>Formación y enfoque</h2>
+      <ul class="lista">
+        <li><span class="p"></span><span><b>Psicóloga comunitaria</b>, con matrícula provincial (MP 1631) y nacional (MN 91819).</span></li>
+        <li><span class="p"></span><span><b>Diplomada en Salud Mental Perinatal.</b></span></li>
+        <li><span class="p"></span><span><b>Diplomada en Abordajes Sistémicos</b> para las Infancias, Adolescencias y Juventudes.</span></li>
+        <li><span class="p"></span><span><b>Psicóloga LGBTTIQ+:</b> un espacio para todas las identidades y orientaciones.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="blanco">
+    <div class="wrap">
+      <div class="kicker">Modalidad</div>
+      <h2>Dónde atiendo</h2>
+      <div class="modos">
+        <div class="modo"><div class="ic"><svg><use href="#i-mapa"/></svg></div><div><b>Presencial</b><p>Zona Centro, Paseo de los Poetas · Salta Capital.</p></div></div>
+        <div class="modo"><div class="ic"><svg><use href="#i-pc"/></svg></div><div><b>Virtual</b><p>Por videollamada, desde donde estés.</p></div></div>
+      </div>
+      <iframe class="mapa" loading="lazy" title="Mapa" src="https://maps.google.com/maps?q=Paseo%20de%20los%20Poetas,%20Salta&z=15&output=embed"></iframe>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="nota">Ejemplo · lo escribimos con vos</span>
+      <h2>Cómo es la primera consulta</h2>
+      <div class="pasos">
+        <div class="paso"><b>Me escribís por WhatsApp</b><p>Contame en pocas palabras qué te trae y si preferís presencial o virtual.</p></div>
+        <div class="paso"><b>Coordinamos día y horario</b><p>Te paso los horarios disponibles y te confirmo el turno.</p></div>
+        <div class="paso"><b>Primer encuentro</b><p>Nos conocemos, me contás lo que te pasa y vemos juntas cómo seguir.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blanco">
+    <div class="wrap">
+      <span class="nota">Ejemplo · se completa con tus datos</span>
+      <h2>Obras sociales</h2>
+      <div class="os">
+        <p style="color:var(--suave)">Acá va la lista de obras sociales y prepagas con las que trabajás, y si das factura para pedir reintegro.</p>
+        <div class="grid"><span>Obra social 1</span><span>Obra social 2</span><span>Prepaga 3</span><span>Particular</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="taller">
+        <svg class="deco" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50" fill="#B9A9E3"/><circle cx="50" cy="50" r="22" fill="#6E5BB8"/></svg>
+        <div class="kicker" style="color:var(--lila)">Talleres</div>
+        <h2>Para madres, padres y referentes afectivos</h2>
+        <p>¿Acompañás a un/a adolescente? Un espacio de talleres para compartir experiencias, intercambiar miradas y construir recursos en grupo.</p>
+        <span class="tag">Cupos limitados</span>
+        <button class="btn btn-claro demo" data-msg="Hola Constanza! Quiero información sobre los talleres para acompañar adolescencias. ¿Cuándo es el próximo?">Quiero info del taller</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="blanco">
+    <div class="wrap">
+      <span class="nota">Ejemplo · las respuestas las escribís vos</span>
+      <h2>Preguntas frecuentes</h2>
+      <details><summary>¿Atendés online?</summary><p>Sí, atiendo por videollamada desde donde estés, y también de forma presencial en Salta Capital.</p></details>
+      <details><summary>¿Cuánto dura cada sesión?</summary><p>Acá va la duración de la sesión y con qué frecuencia nos vemos.</p></details>
+      <details><summary>¿Trabajás con obra social?</summary><p>Acá va con cuáles trabajás y cómo se pide el reintegro.</p></details>
+      <details><summary>¿Atendés a adolescentes?</summary><p>Sí, acompaño adolescencias, juventudes y adulteces.</p></details>
+      <a class="ig" href="https://www.instagram.com/psico.constanzavillegas/"><span class="c"><svg><use href="#i-ig"/></svg></span><span><b>@psico.constanzavillegas</b><br><span style="color:var(--suave);font-weight:600">Seguime en Instagram</span></span></a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span class="serif">Constanza Villegas</span>
+  Licenciada en Psicología · MP 1631 · MN 91819<br>Salta Capital y virtual
+  <span class="yagua">Muestra de página hecha por Yaguá · <a href="https://wa.me/5492284320122?text=Hola!%20Vi%20la%20muestra%20de%20p%C3%A1gina%20de%20Constanza%20Villegas%20y%20quiero%20saber%20m%C3%A1s.">Escribile a Yaguá</a></span>
+</footer>
+
+<div class="fijo"><div class="fila">
+  <button class="btn btn-wa demo" data-msg="Hola Constanza! Quería consultar por un turno para empezar terapia. ¿Tenés disponibilidad presencial o virtual?"><svg class="w"><use href="#wa"/></svg>Pedir turno</button>
+  <button class="btn btn-vi demo" data-msg="Hola Constanza! Quiero información sobre los talleres para acompañar adolescencias. ¿Cuándo es el próximo?">Talleres</button>
+</div></div>
+
+<dialog id="d">
+  <h3>Así te llega al WhatsApp</h3>
+  <div class="burbuja" id="burbuja"></div>
+  <p>En tu página, este botón abre tu WhatsApp con la consulta ya escrita. La persona solo toca enviar.</p>
+  <div class="acc">
+    <a class="btn btn-wa" href="https://wa.me/5492284320122?text=Hola!%20Vi%20la%20muestra%20de%20p%C3%A1gina%20de%20Constanza%20Villegas%20y%20quiero%20saber%20m%C3%A1s.">Quiero esta página</a>
+    <button class="btn btn-claro" onclick="d.close()">Seguir mirando</button>
+  </div>
+</dialog>
+<script>
+document.querySelectorAll('.demo').forEach(b=>b.addEventListener('click',()=>{document.getElementById('burbuja').textContent=b.dataset.msg;document.getElementById('d').showModal()}));
+</script>
+</body>
+</html>

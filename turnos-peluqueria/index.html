@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Reservá tu turno</title>
+<meta name="description" content="Elegí servicio, día y horario y reservá tu turno en la peluquería en un minuto.">
+<meta name="theme-color" content="#2B1D24">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <small>RESERVÁ TU TURNO</small>
+    <h1 id="nombre">&nbsp;</h1>
+    <p id="direccion"></p>
+  </div>
+</header>
+<div id="demo" class="demo" hidden>Modo demostración: los turnos se guardan solo en este celular. <a href="admin.html">Ver el panel de la dueña →</a></div>
+
+<main class="wrap">
+  <ol class="pasos" id="pasos"><li class="on">Servicio</li><li>Día y hora</li><li>Tus datos</li></ol>
+
+  <section id="p1">
+    <h2>¿Qué te querés hacer?</h2>
+    <div id="servicios" class="lista"><p class="cargando">Cargando…</p></div>
+  </section>
+
+  <section id="p2" hidden>
+    <button class="volver" data-ir="1">← Cambiar servicio</button>
+    <h2>Elegí el día</h2>
+    <p class="elegido" id="resServicio"></p>
+    <div class="cal">
+      <div class="cal-nav"><button id="mesAnt" aria-label="Mes anterior">‹</button><b id="mesTxt"></b><button id="mesSig" aria-label="Mes siguiente">›</button></div>
+      <div class="cal-dow"><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
+      <div class="cal-dias" id="dias"></div>
+    </div>
+    <h2 id="tituloHoras" class="mt"></h2>
+    <div id="horas"></div>
+  </section>
+
+  <section id="p3" hidden>
+    <button class="volver" data-ir="2">← Cambiar día u hora</button>
+    <h2>Último paso</h2>
+    <div class="resumen" id="resumen"></div>
+    <form id="form" class="form" novalidate>
+      <label>Nombre y apellido<input name="nombre" autocomplete="name" required></label>
+      <label>WhatsApp<input name="telefono" type="tel" inputmode="tel" autocomplete="tel" placeholder="Ej: 2284 123456" required><small>Código de área sin 0 y número sin 15.</small></label>
+      <label>¿Algo que debamos saber? <i>(opcional)</i><textarea name="nota" rows="2" placeholder="Ej: tengo el pelo largo, quiero traer una foto…"></textarea></label>
+      <p class="error" id="error" hidden></p>
+      <button class="btn" id="btnReservar">Confirmar turno</button>
+    </form>
+  </section>
+
+  <section id="p4" hidden>
+    <div class="listo">
+      <div class="tilde">✓</div>
+      <h2>¡Turno reservado!</h2>
+      <div class="resumen" id="resumenFinal"></div>
+      <a class="btn btn-wa" id="btnWA" target="_blank" rel="noopener" hidden>Avisar por WhatsApp</a>
+      <a class="btn btn-sec" id="btnCal" target="_blank" rel="noopener">Agendarlo en mi calendario</a>
+      <p class="nota">Si no podés venir, avisá por WhatsApp así el horario lo aprovecha otra persona.</p>
+      <button class="volver" id="otro">Reservar otro turno</button>
+    </div>
+  </section>
+</main>
+<footer class="pie" id="pie"></footer>
+
+<script src="logica.js"></script>
+<script>
+var cfg = null, ocupados = [], sel = { servicio: null, fecha: null, hora: null }, mesVista = null;
+var $ = function (id) { return document.getElementById(id); };
+
+function ir(n) {
+  for (var i = 1; i <= 4; i++) $('p' + i).hidden = i !== n;
+  [].forEach.call($('pasos').children, function (li, i) { li.className = i < n ? 'on' : ''; });
+  $('pasos').hidden = n === 4;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+document.querySelectorAll('[data-ir]').forEach(function (b) { b.onclick = function () { ir(Number(b.dataset.ir)); }; });
+
+function cargar() {
+  return API.publico().then(function (r) {
+    cfg = r.cfg; ocupados = r.ocupados;
+    document.title = 'Turnos · ' + cfg.nombre;
+    $('nombre').textContent = cfg.nombre;
+    $('direccion').textContent = cfg.direccion || '';
+    $('pie').textContent = cfg.nombre + (cfg.direccion ? ' · ' + cfg.direccion : '');
+  });
+}
+
+function pintarServicios() {
+  $('servicios').innerHTML = cfg.servicios.map(function (s) {
+    return '<button class="item" data-id="' + esc(s.id) + '"><span><b>' + esc(s.nombre) + '</b><small>' + duracionTxt(s.duracion) + '</small></span>' +
+      (s.precio ? '<em>' + esc(s.precio) + '</em>' : '') + '<i>›</i></button>';
+  }).join('') || '<p class="nota">Todavía no hay servicios cargados.</p>';
+  $('servicios').querySelectorAll('.item').forEach(function (b) {
+    b.onclick = function () {
+      sel.servicio = cfg.servicios.filter(function (s) { return s.id === b.dataset.id; })[0];
+      sel.fecha = null; sel.hora = null;
+      $('resServicio').textContent = sel.servicio.nombre + ' · ' + duracionTxt(sel.servicio.duracion);
+      var primero = primerDiaLibre();
+      mesVista = primero ? primero.slice(0, 7) : ahoraLocal().fecha.slice(0, 7);
+      sel.fecha = primero;
+      pintarCalendario(); pintarHoras(); ir(2);
+    };
+  });
+}
+
+function libres(fecha) { return horariosLibres(cfg, ocupados, fecha, Number(sel.servicio.duracion), ahoraLocal()); }
+function primerDiaLibre() {
+  var hoy = ahoraLocal().fecha;
+  for (var i = 0; i <= (Number(cfg.diasVista) || 30); i++) { var f = sumarDias(hoy, i); if (libres(f).length) return f; }
+  return null;
+}
+
+function pintarCalendario() {
+  var p = mesVista.split('-').map(Number), primero = new Date(p[0], p[1] - 1, 1);
+  var hoy = ahoraLocal().fecha, max = sumarDias(hoy, Number(cfg.diasVista) || 30);
+  $('mesTxt').textContent = MESES[p[1] - 1] + ' ' + p[0];
+  $('mesAnt').disabled = mesVista <= hoy.slice(0, 7);
+  $('mesSig').disabled = mesVista >= max.slice(0, 7);
+  var html = '', vacios = (primero.getDay() + 6) % 7;
+  for (var i = 0; i < vacios; i++) html += '<span></span>';
+  var dias = new Date(p[0], p[1], 0).getDate();
+  for (var d = 1; d <= dias; d++) {
+    var f = mesVista + '-' + String(d).padStart(2, '0'), n = libres(f).length;
+    var cls = (n ? 'libre' : 'no') + (f === sel.fecha ? ' sel' : '') + (f === hoy ? ' hoy' : '');
+    html += '<button class="' + cls + '" data-f="' + f + '"' + (n ? '' : ' disabled') + ' aria-label="' + fechaLarga(f) + (n ? ', ' + n + ' horarios' : ', sin horarios') + '">' + d + '</button>';
+  }
+  $('dias').innerHTML = html;
+  $('dias').querySelectorAll('button.libre').forEach(function (b) {
+    b.onclick = function () { sel.fecha = b.dataset.f; sel.hora = null; pintarCalendario(); pintarHoras(); $('tituloHoras').scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+  });
+}
+$('mesAnt').onclick = function () { var p = mesVista.split('-').map(Number); mesVista = fechaDe(new Date(p[0], p[1] - 2, 1)).slice(0, 7); pintarCalendario(); };
+$('mesSig').onclick = function () { var p = mesVista.split('-').map(Number); mesVista = fechaDe(new Date(p[0], p[1], 1)).slice(0, 7); pintarCalendario(); };
+
+function pintarHoras() {
+  if (!sel.fecha) {
+    $('tituloHoras').textContent = '';
+    $('horas').innerHTML = '<p class="nota">No quedan horarios para este servicio en los próximos días. Escribinos por WhatsApp y vemos.</p>';
+    return;
+  }
+  var hs = libres(sel.fecha);
+  $('tituloHoras').textContent = 'Horarios del ' + fechaLarga(sel.fecha);
+  var grupos = { 'Mañana': [], 'Tarde': [] };
+  hs.forEach(function (h) { grupos[aMin(h) < 13 * 60 ? 'Mañana' : 'Tarde'].push(h); });
+  $('horas').innerHTML = Object.keys(grupos).filter(function (g) { return grupos[g].length; }).map(function (g) {
+    return '<p class="grupo">' + g + '</p><div class="chips">' + grupos[g].map(function (h) { return '<button data-h="' + h + '">' + h + '</button>'; }).join('') + '</div>';
+  }).join('');
+  $('horas').querySelectorAll('button').forEach(function (b) {
+    b.onclick = function () { sel.hora = b.dataset.h; $('resumen').innerHTML = resumenHTML(); $('error').hidden = true; ir(3); };
+  });
+}
+
+function resumenHTML() {
+  var fin = aHora(aMin(sel.hora) + Number(sel.servicio.duracion));
+  return '<b>' + esc(sel.servicio.nombre) + '</b><span>' + fechaLarga(sel.fecha) + '</span><span>de ' + sel.hora + ' a ' + fin + ' h</span>' +
+    (sel.servicio.precio ? '<span>' + esc(sel.servicio.precio) + '</span>' : '');
+}
+
+$('form').onsubmit = function (e) {
+  e.preventDefault();
+  var f = new FormData($('form')), btn = $('btnReservar');
+  var datos = { servicio: sel.servicio.id, fecha: sel.fecha, hora: sel.hora, nombre: f.get('nombre'), telefono: f.get('telefono'), nota: f.get('nota') };
+  btn.disabled = true; btn.textContent = 'Reservando…'; $('error').hidden = true;
+  API.reservar(datos).then(function () {
+    try { localStorage.setItem('turnos-cliente', JSON.stringify({ nombre: datos.nombre, telefono: datos.telefono })); } catch (e2) {}
+    ocupados.push({ fecha: datos.fecha, hora: datos.hora, duracion: Number(sel.servicio.duracion) });
+    terminar(datos);
+    return cargar().then(function () { if (!$('p2').hidden) { pintarCalendario(); pintarHoras(); } });
+  }).catch(function (err) {
+    $('error').textContent = err.message || 'No se pudo reservar. Probá de nuevo.'; $('error').hidden = false;
+    if (/ocup/.test(err.message)) cargar().then(function () { pintarCalendario(); pintarHoras(); });
+  }).then(function () { btn.disabled = false; btn.textContent = 'Confirmar turno'; });
+};
+
+function terminar(d) {
+  $('resumenFinal').innerHTML = resumenHTML();
+  var fin = aHora(aMin(d.hora) + Number(sel.servicio.duracion));
+  var txt = 'Hola! Soy ' + d.nombre + '. Reservé ' + sel.servicio.nombre + ' para el ' + fechaLarga(d.fecha) + ' a las ' + d.hora + ' h.';
+  if (cfg.whatsapp) { $('btnWA').href = linkWA(cfg.whatsapp, txt); $('btnWA').hidden = false; }
+  var t = function (h) { return d.fecha.replace(/-/g, '') + 'T' + h.replace(':', '') + '00'; };
+  $('btnCal').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(sel.servicio.nombre + ' · ' + cfg.nombre) +
+    '&dates=' + t(d.hora) + '/' + t(fin) + '&ctz=America/Argentina/Buenos_Aires&location=' + encodeURIComponent(cfg.direccion || '');
+  ir(4);
+}
+$('otro').onclick = function () { pintarServicios(); ir(1); };
+
+(function () {
+  try { var c = JSON.parse(localStorage.getItem('turnos-cliente') || 'null'); if (c) { $('form').nombre.value = c.nombre || ''; $('form').telefono.value = c.telefono || ''; } } catch (e) {}
+  $('demo').hidden = !MODO_DEMO;
+  cargar().then(pintarServicios).catch(function () {
+    $('servicios').innerHTML = '<p class="error">No pudimos cargar los horarios. Revisá tu conexión y recargá la página.</p>';
+  });
+})();
+</script>
+</body>
+</html>

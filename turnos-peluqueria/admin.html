@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Panel de turnos</title>
+<meta name="theme-color" content="#2B1D24">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap"><small>PANEL DE TURNOS</small><h1 id="nombre">Tu agenda</h1><p><a href="./" style="color:inherit">Ver la página de reservas →</a></p></div>
+</header>
+<div id="demo" class="demo" hidden>Modo demostración · PIN: <b>1234</b> · <a href="#" id="reiniciar">Reiniciar datos de prueba</a></div>
+
+<main class="wrap">
+  <section id="login">
+    <h2>Entrar</h2>
+    <form id="formLogin" class="form">
+      <label>PIN<input name="pin" type="password" inputmode="numeric" autocomplete="current-password" required></label>
+      <p class="error" id="errLogin" hidden></p>
+      <button class="btn">Entrar</button>
+    </form>
+  </section>
+
+  <div id="app" hidden>
+    <nav class="tabs" id="tabs">
+      <button data-tab="agenda" class="on">Agenda</button><button data-tab="horarios">Horarios</button><button data-tab="servicios">Servicios</button><button data-tab="ajustes">Ajustes</button>
+    </nav>
+
+    <section id="t-agenda">
+      <div class="resumen-dia" id="contadores"></div>
+      <button class="btn btn-sec" id="btnAgregar" style="margin-top:12px">+ Agregar turno o bloquear horario</button>
+      <label class="switch" style="margin-top:12px"><input type="checkbox" id="verCancelados"> Mostrar cancelados</label>
+      <div id="agenda"></div>
+    </section>
+
+    <section id="t-horarios" class="con-flotante" hidden>
+      <h2>Semana tipo</h2>
+      <p class="ayuda">Esto se repite <b>solo</b> todas las semanas. No hace falta cargar nada cada lunes: tocás algo solo cuando cambia.</p>
+      <div id="semana"></div>
+      <h2 class="mt">Días especiales</h2>
+      <p class="ayuda">Feriados, vacaciones o un sábado que abrís de corrido. Le gana a la semana tipo.</p>
+      <div class="card form">
+        <div class="fila"><label>Desde<input type="date" id="exDesde"></label><label>Hasta<input type="date" id="exHasta"></label></div>
+        <label>¿Qué pasa esos días?<select id="exTipo"><option value="cerrado">Cerrado</option><option value="especial">Horario especial</option></select></label>
+        <div class="fila" id="exHoras" hidden><label>Abre<input type="time" id="exA" value="09:00" step="900"></label><label>Cierra<input type="time" id="exB" value="13:00" step="900"></label></div>
+        <button class="btn-mini" id="exAgregar" type="button">Agregar</button>
+      </div>
+      <div id="excepciones"></div>
+    </section>
+
+    <section id="t-servicios" class="con-flotante" hidden>
+      <h2>Servicios</h2>
+      <p class="ayuda">La duración define cuánto lugar ocupa en la agenda. Un color de 2 h bloquea 2 h, no media.</p>
+      <div id="listaServicios"></div>
+      <button class="btn btn-sec" id="servAgregar" type="button">+ Agregar servicio</button>
+    </section>
+
+    <section id="t-ajustes" class="con-flotante" hidden>
+      <h2>Datos del local</h2>
+      <div class="form" id="formAjustes">
+        <label>Nombre<input data-k="nombre"></label>
+        <label>Dirección<input data-k="direccion"></label>
+        <label>WhatsApp del local<input data-k="whatsapp" type="tel" placeholder="2284 123456"><small>Las clientas te avisan acá cuando reservan.</small></label>
+        <label>Email para avisos de turnos nuevos<input data-k="emailAviso" type="email" placeholder="(si está vacío, va al dueño de la planilla)"></label>
+        <label>Cada cuánto empiezan los turnos<select data-k="paso" data-num><option value="15">Cada 15 min</option><option value="30">Cada 30 min</option><option value="60">Cada 1 hora</option></select></label>
+        <label>Hasta cuántos días adelante se puede reservar<input data-k="diasVista" data-num type="number" min="1" max="120"></label>
+        <label>Para reservar hoy, con cuánta anticipación<select data-k="anticipacionMin" data-num><option value="0">Sin mínimo</option><option value="60">1 hora antes</option><option value="120">2 horas antes</option><option value="240">4 horas antes</option><option value="1440">No se reserva para el mismo día</option></select></label>
+      </div>
+      <h2 class="mt">Cambiar PIN</h2>
+      <div class="form"><div class="fila"><input id="pinNuevo" type="password" inputmode="numeric" placeholder="PIN nuevo (4+ números)"><button class="btn-mini chico" id="pinGuardar" type="button">Cambiar</button></div></div>
+    </section>
+  </div>
+</main>
+
+<div class="flotante" id="barraGuardar" hidden><button class="btn" id="btnGuardar">Guardar cambios</button></div>
+
+<dialog id="dlg">
+  <form id="formAgregar" class="form" method="dialog">
+    <h2>Agregar a la agenda</h2>
+    <p class="nota" style="margin:-8px 0 0">Para turnos que te piden por teléfono, o para bloquear un rato (trámite, almuerzo). Si dejás el nombre vacío, queda como bloqueado.</p>
+    <div class="fila"><label>Día<input name="fecha" type="date" required></label><label>Hora<input name="hora" type="time" step="900" required></label></div>
+    <label>Servicio<select name="servicio" id="selServ"></select></label>
+    <label>Duración (min)<input name="duracion" type="number" min="15" step="15" required></label>
+    <label>Nombre de la clienta<input name="nombre" placeholder="Vacío = bloqueado"></label>
+    <label>WhatsApp<input name="telefono" type="tel"></label>
+    <p class="error" id="errAgregar" hidden></p>
+    <div class="fila"><button class="btn btn-sec" value="cancel" formnovalidate>Cerrar</button><button class="btn" id="btnConfirmarAgregar" value="ok">Guardar</button></div>
+  </form>
+</dialog>
+
+<script src="logica.js"></script>
+<script>
+var $ = function (id) { return document.getElementById(id); };
+var pin = null, cfg = null, turnos = [], borrador = null, sucio = false, tabActual = 'agenda';
+var NOM_DIAS = [['1', 'Lunes'], ['2', 'Martes'], ['3', 'Miércoles'], ['4', 'Jueves'], ['5', 'Viernes'], ['6', 'Sábado'], ['0', 'Domingo']];
+
+function toast(t) { var d = document.createElement('div'); d.className = 'toast'; d.textContent = t; document.body.appendChild(d); setTimeout(function () { d.remove(); }, 2600); }
+function clonar(o) { return JSON.parse(JSON.stringify(o)); }
+
+/* ---------- entrar ---------- */
+function entrar(p) {
+  return API.admin(p).then(function (r) {
+    pin = p; cfg = r.cfg; turnos = r.turnos; borrador = clonar(cfg);
+    try { sessionStorage.setItem('turnos-pin', p); } catch (e) {}
+    $('login').hidden = true; $('app').hidden = false; $('nombre').textContent = cfg.nombre;
+    pintarTodo();
+  });
+}
+$('formLogin').onsubmit = function (e) {
+  e.preventDefault(); $('errLogin').hidden = true;
+  entrar($('formLogin').pin.value).catch(function (err) { $('errLogin').textContent = err.message; $('errLogin').hidden = false; });
+};
+function recargar() { return API.admin(pin).then(function (r) { cfg = r.cfg; turnos = r.turnos; if (!sucio) borrador = clonar(cfg); pintarAgenda(); }); }
+
+/* ---------- pestañas ---------- */
+$('tabs').querySelectorAll('button').forEach(function (b) {
+  b.onclick = function () {
+    tabActual = b.dataset.tab;
+    $('tabs').querySelectorAll('button').forEach(function (x) { x.className = x === b ? 'on' : ''; });
+    ['agenda', 'horarios', 'servicios', 'ajustes'].forEach(function (t) { $('t-' + t).hidden = t !== tabActual; });
+    $('barraGuardar').hidden = tabActual === 'agenda' || !sucio;
+    if (tabActual === 'agenda') recargar();
+  };
+});
+function marcarSucio() { sucio = true; $('barraGuardar').hidden = tabActual === 'agenda'; }
+window.addEventListener('beforeunload', function (e) { if (sucio) { e.preventDefault(); e.returnValue = ''; } });
+
+function pintarTodo() { pintarAgenda(); pintarSemana(); pintarExcepciones(); pintarServicios(); pintarAjustes(); }
+
+/* ---------- agenda ---------- */
+function pintarAgenda() {
+  var hoy = ahoraLocal().fecha, manana = sumarDias(hoy, 1), finSemana = sumarDias(hoy, 6);
+  var act = turnosActivos(turnos).filter(function (t) { return t.estado !== 'bloqueo'; });
+  var cuenta = function (f) { return act.filter(f).length; };
+  $('contadores').innerHTML =
+    '<div><b>' + cuenta(function (t) { return t.fecha === hoy; }) + '</b><span>hoy</span></div>' +
+    '<div><b>' + cuenta(function (t) { return t.fecha === manana; }) + '</b><span>mañana</span></div>' +
+    '<div><b>' + cuenta(function (t) { return t.fecha >= hoy && t.fecha <= finSemana; }) + '</b><span>próx. 7 días</span></div>';
+
+  var ver = turnos.filter(function (t) { return t.fecha >= hoy && ($('verCancelados').checked || t.estado !== 'cancelado'); })
+    .sort(function (a, b) { return (a.fecha + a.hora).localeCompare(b.fecha + b.hora); });
+  if (!ver.length) { $('agenda').innerHTML = '<p class="vacio">No hay turnos por delante. Cuando una clienta reserve, aparece acá.</p>'; return; }
+  var html = '', dia = null;
+  ver.forEach(function (t) {
+    if (t.fecha !== dia) {
+      dia = t.fecha;
+      var n = ver.filter(function (x) { return x.fecha === dia && x.estado === 'confirmado'; }).length;
+      html += '<p class="dia-tit"><span>' + (dia === hoy ? 'Hoy' : dia === manana ? 'Mañana' : fechaLarga(dia)) + '</span><small>' + n + ' turno' + (n === 1 ? '' : 's') + '</small></p>';
+    }
+    var fin = aHora(aMin(t.hora) + Number(t.duracion));
+    var cls = t.estado === 'bloqueo' ? ' bloqueo' : '';
+    var acc = '';
+    if (t.estado === 'confirmado' && t.telefono) {
+      acc += '<a class="wa" target="_blank" rel="noopener" href="' + linkWA(t.telefono, 'Hola ' + t.nombre.split(' ')[0] + '! Te recordamos tu turno de ' + t.servicio + ' el ' + fechaLarga(t.fecha) + ' a las ' + t.hora + ' h en ' + cfg.nombre + '. ¿Nos confirmás? 🙌') + '">Recordar</a>';
+      acc += '<a href="tel:' + esc(soloDigitos(t.telefono)) + '">Llamar</a>';
+    }
+    if (t.estado !== 'cancelado') acc += '<button class="x" data-cancelar="' + esc(t.id) + '">' + (t.estado === 'bloqueo' ? 'Liberar' : 'Cancelar') + '</button>';
+    html += '<div class="card turno' + cls + '"' + (t.estado === 'cancelado' ? ' style="opacity:.45"' : '') + '><div class="h">' + t.hora + '<small>a ' + fin + '</small></div><div>' +
+      '<b>' + (t.estado === 'bloqueo' ? 'Bloqueado' : esc(t.nombre)) + (t.estado === 'cancelado' ? ' · cancelado' : '') + '</b>' +
+      '<div class="s">' + esc(t.servicio || duracionTxt(t.duracion)) + (t.telefono ? ' · ' + esc(t.telefono) : '') + '</div>' +
+      (t.nota ? '<div class="nota-t">' + esc(t.nota) + '</div>' : '') + '</div>' +
+      (acc ? '<div class="acciones">' + acc + '</div>' : '') + '</div>';
+  });
+  $('agenda').innerHTML = html;
+  $('agenda').querySelectorAll('[data-cancelar]').forEach(function (b) {
+    b.onclick = function () {
+      var t = turnos.filter(function (x) { return x.id === b.dataset.cancelar; })[0];
+      if (!confirm(t.estado === 'bloqueo' ? '¿Liberar este horario?' : '¿Cancelar el turno de ' + t.nombre + ' (' + t.hora + ')? El horario vuelve a quedar libre.')) return;
+      b.disabled = true;
+      API.cancelar(pin, t.id).then(function () { toast('Listo, el horario quedó libre'); return recargar(); }).catch(function (e) { toast(e.message); b.disabled = false; });
+    };
+  });
+}
+$('verCancelados').onchange = pintarAgenda;
+
+$('btnAgregar').onclick = function () {
+  var f = $('formAgregar');
+  $('selServ').innerHTML = '<option value="">— Bloqueo / otro —</option>' + cfg.servicios.map(function (s) { return '<option value="' + esc(s.id) + '">' + esc(s.nombre) + '</option>'; }).join('');
+  f.reset(); f.fecha.value = ahoraLocal().fecha; f.duracion.value = cfg.paso || 30; $('errAgregar').hidden = true;
+  $('dlg').showModal();
+};
+$('selServ').onchange = function () {
+  var s = cfg.servicios.filter(function (x) { return x.id === $('selServ').value; })[0];
+  if (s) $('formAgregar').duracion.value = s.duracion;
+};
+$('formAgregar').onsubmit = function (e) {
+  if (e.submitter && e.submitter.value === 'cancel') return;
+  e.preventDefault();
+  var f = $('formAgregar'), s = cfg.servicios.filter(function (x) { return x.id === f.servicio.value; })[0];
+  var d = { fecha: f.fecha.value, hora: f.hora.value, duracion: Number(f.duracion.value), servicio: s ? s.nombre : '', nombre: f.nombre.value.trim(), telefono: f.telefono.value.trim() };
+  if (!d.fecha || !d.hora || !d.duracion) { $('errAgregar').textContent = 'Completá día, hora y duración.'; $('errAgregar').hidden = false; return; }
+  $('btnConfirmarAgregar').disabled = true;
+  API.agregar(pin, d).then(function () { $('dlg').close(); toast(d.nombre ? 'Turno agregado' : 'Horario bloqueado'); return recargar(); })
+    .catch(function (err) { $('errAgregar').textContent = err.message; $('errAgregar').hidden = false; })
+    .then(function () { $('btnConfirmarAgregar').disabled = false; });
+};
+
+/* ---------- semana tipo ---------- */
+function pintarSemana() {
+  $('semana').innerHTML = NOM_DIAS.map(function (d) {
+    var fr = borrador.semana[d[0]] || [];
+    return '<div class="card dia-semana"><div class="cab">' + d[1] + '<label class="switch"><input type="checkbox" data-abre="' + d[0] + '"' + (fr.length ? ' checked' : '') + '> ' + (fr.length ? 'Abierto' : 'Cerrado') + '</label></div>' +
+      fr.map(function (r, i) {
+        return '<div class="franja"><input type="time" step="900" value="' + r[0] + '" data-d="' + d[0] + '" data-i="' + i + '" data-j="0"><span class="chico">a</span><input type="time" step="900" value="' + r[1] + '" data-d="' + d[0] + '" data-i="' + i + '" data-j="1"><button class="btn-mini x chico" data-quitar="' + d[0] + ':' + i + '" type="button" aria-label="Quitar franja">×</button></div>';
+      }).join('') +
+      (fr.length ? '<button class="btn-mini" data-franja="' + d[0] + '" type="button">+ Otra franja (ej: tarde)</button>' : '') + '</div>';
+  }).join('');
+  var S = $('semana');
+  S.querySelectorAll('[data-abre]').forEach(function (c) { c.onchange = function () { borrador.semana[c.dataset.abre] = c.checked ? [['09:00', '13:00']] : []; marcarSucio(); pintarSemana(); }; });
+  S.querySelectorAll('input[type=time]').forEach(function (c) { c.onchange = function () { borrador.semana[c.dataset.d][c.dataset.i][c.dataset.j] = c.value; marcarSucio(); }; });
+  S.querySelectorAll('[data-quitar]').forEach(function (b) { b.onclick = function () { var p = b.dataset.quitar.split(':'); borrador.semana[p[0]].splice(Number(p[1]), 1); marcarSucio(); pintarSemana(); }; });
+  S.querySelectorAll('[data-franja]').forEach(function (b) { b.onclick = function () { borrador.semana[b.dataset.franja].push(['16:00', '20:00']); marcarSucio(); pintarSemana(); }; });
+}
+
+/* ---------- días especiales ---------- */
+$('exTipo').onchange = function () { $('exHoras').hidden = $('exTipo').value !== 'especial'; };
+$('exAgregar').onclick = function () {
+  var a = $('exDesde').value, b = $('exHasta').value || a;
+  if (!a) { toast('Elegí al menos el día "Desde"'); return; }
+  if (b < a) { var x = a; a = b; b = x; }
+  var val = $('exTipo').value === 'cerrado' ? [] : [[$('exA').value, $('exB').value]];
+  var n = 0;
+  for (var f = a; f <= b && n < 120; f = sumarDias(f, 1), n++) borrador.excepciones[f] = clonar(val);
+  marcarSucio(); pintarExcepciones(); toast(n + (n === 1 ? ' día cargado' : ' días cargados') + ' — tocá Guardar');
+};
+function pintarExcepciones() {
+  var hoy = ahoraLocal().fecha;
+  Object.keys(borrador.excepciones).forEach(function (f) { if (f < hoy) delete borrador.excepciones[f]; });
+  var fs = Object.keys(borrador.excepciones).sort();
+  $('excepciones').innerHTML = fs.length ? fs.map(function (f) {
+    var v = borrador.excepciones[f];
+    return '<div class="card fila"><span><b class="cap" style="display:inline-block">' + fechaLarga(f) + '</b><br><span class="s">' + (v.length ? v.map(function (r) { return r[0] + ' a ' + r[1]; }).join(' y ') : 'Cerrado') + '</span></span><button class="btn-mini x chico" data-exq="' + f + '" type="button" aria-label="Quitar">×</button></div>';
+  }).join('') : '<p class="nota">No hay días especiales cargados.</p>';
+  $('excepciones').querySelectorAll('[data-exq]').forEach(function (b) { b.onclick = function () { delete borrador.excepciones[b.dataset.exq]; marcarSucio(); pintarExcepciones(); }; });
+}
+
+/* ---------- servicios ---------- */
+function opcionesDuracion(sel) {
+  var o = '';
+  for (var m = 15; m <= 300; m += 15) o += '<option value="' + m + '"' + (m === Number(sel) ? ' selected' : '') + '>' + duracionTxt(m) + '</option>';
+  return o;
+}
+function pintarServicios() {
+  $('listaServicios').innerHTML = borrador.servicios.map(function (s, i) {
+    return '<div class="card form"><div class="fila"><input value="' + esc(s.nombre) + '" data-s="' + i + '" data-k="nombre" placeholder="Nombre del servicio"><button class="btn-mini x chico" data-sq="' + i + '" type="button" aria-label="Borrar servicio">×</button></div>' +
+      '<div class="fila"><select data-s="' + i + '" data-k="duracion">' + opcionesDuracion(s.duracion) + '</select><input value="' + esc(s.precio) + '" data-s="' + i + '" data-k="precio" placeholder="Precio (opcional)"></div></div>';
+  }).join('');
+  var L = $('listaServicios');
+  L.querySelectorAll('[data-s]').forEach(function (c) { c.oninput = c.onchange = function () { borrador.servicios[c.dataset.s][c.dataset.k] = c.dataset.k === 'duracion' ? Number(c.value) : c.value; marcarSucio(); }; });
+  L.querySelectorAll('[data-sq]').forEach(function (b) { b.onclick = function () { if (confirm('¿Borrar "' + (borrador.servicios[b.dataset.sq].nombre || 'servicio') + '"? Los turnos ya reservados no se tocan.')) { borrador.servicios.splice(Number(b.dataset.sq), 1); marcarSucio(); pintarServicios(); } }; });
+}
+$('servAgregar').onclick = function () { borrador.servicios.push({ id: nuevoId(), nombre: '', duracion: 30, precio: '' }); marcarSucio(); pintarServicios(); };
+
+/* ---------- ajustes ---------- */
+function pintarAjustes() {
+  $('formAjustes').querySelectorAll('[data-k]').forEach(function (c) {
+    c.value = borrador[c.dataset.k] == null ? '' : borrador[c.dataset.k];
+    c.oninput = c.onchange = function () { borrador[c.dataset.k] = c.hasAttribute('data-num') ? Number(c.value) : c.value; marcarSucio(); };
+  });
+}
+$('pinGuardar').onclick = function () {
+  var n = $('pinNuevo').value;
+  if (!/^\d{4,}$/.test(n)) { toast('El PIN tiene que tener al menos 4 números'); return; }
+  API.cambiarPin(pin, n).then(function () { pin = n; try { sessionStorage.setItem('turnos-pin', n); } catch (e) {} $('pinNuevo').value = ''; toast('PIN cambiado'); }).catch(function (e) { toast(e.message); });
+};
+
+/* ---------- guardar ---------- */
+function problemas(c) {
+  var malas = [];
+  Object.keys(c.semana).forEach(function (d) { c.semana[d].forEach(function (r) { if (!r[0] || !r[1] || r[0] >= r[1]) malas.push('una franja del ' + NOM_DIAS.filter(function (x) { return x[0] === d; })[0][1].toLowerCase()); }); });
+  Object.keys(c.excepciones).forEach(function (f) { c.excepciones[f].forEach(function (r) { if (r[0] >= r[1]) malas.push('el día especial ' + fechaLarga(f)); }); });
+  c.servicios.forEach(function (s) { if (!String(s.nombre).trim()) malas.push('un servicio sin nombre'); });
+  return malas;
+}
+$('btnGuardar').onclick = function () {
+  var m = problemas(borrador);
+  if (m.length) { toast('Revisá ' + m[0] + ' (la hora de cierre tiene que ser después de la de apertura)'); return; }
+  $('btnGuardar').disabled = true; $('btnGuardar').textContent = 'Guardando…';
+  API.guardarConfig(pin, borrador).then(function () {
+    cfg = clonar(borrador); sucio = false; $('barraGuardar').hidden = true; $('nombre').textContent = cfg.nombre; toast('Guardado. Ya se ve en la página de reservas.');
+  }).catch(function (e) { toast(e.message); }).then(function () { $('btnGuardar').disabled = false; $('btnGuardar').textContent = 'Guardar cambios'; });
+};
+
+/* ---------- inicio ---------- */
+$('demo').hidden = !MODO_DEMO;
+$('reiniciar').onclick = function (e) { e.preventDefault(); if (confirm('¿Borrar los turnos de prueba y empezar de cero?')) { Demo.reiniciar(); location.reload(); } };
+(function () {
+  var p = null; try { p = sessionStorage.getItem('turnos-pin'); } catch (e) {}
+  if (p) entrar(p).catch(function () {});
+})();
+setInterval(function () { if (pin && tabActual === 'agenda' && !document.hidden) recargar().catch(function () {}); }, 60000);
+</script>
+</body>
+</html>

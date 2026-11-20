@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 420" width="600" height="420">
+<rect width="600" height="420" fill="#fff"/>
+<g fill="none" stroke="#111" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<!-- cuerpo + hocico (una sola linea) -->
+<path d="M30 236 C 45 226, 65 226, 82 226 C 110 165, 180 130, 270 130 C 360 130, 430 160, 480 200 C 505 218, 520 224, 540 226 C 520 230, 505 232, 480 240 C 430 260, 360 272, 260 272 C 170 272, 110 258, 80 246 C 62 246, 42 244, 30 236 Z" fill="#7ec8f0"/>
+<!-- panza -->
+<path d="M90 246 C 150 262, 220 268, 300 264" stroke-width="3"/>
+<!-- linea de la boca -->
+<path d="M32 237 C 50 240, 68 240, 84 236" stroke-width="3"/>
+<!-- aleta dorsal -->
+<path d="M250 132 C 270 90, 300 70, 330 62 C 320 90, 320 115, 335 134" fill="#4fa3d1"/>
+<!-- aleta pectoral -->
+<path d="M210 262 C 205 295, 190 320, 170 335 C 210 330, 245 305, 255 268" fill="#4fa3d1"/>
+<!-- cola -->
+<path d="M535 225 C 550 190, 570 165, 590 155 C 585 185, 570 210, 555 228 C 572 245, 585 270, 588 300 C 568 288, 548 262, 535 235" fill="#4fa3d1"/>
+<!-- ojo -->
+<circle cx="125" cy="205" r="9" fill="#111"/>
+<circle cx="128" cy="202" r="3" fill="#fff" stroke="none"/>
+<!-- espiraculo -->
+<path d="M180 140 C 185 136, 192 136, 196 140" stroke-width="4"/>
+</g>
+<!-- agua -->
+<g fill="none" stroke="#2b7bb9" stroke-width="4" stroke-linecap="round">
+<path d="M40 385 q 25 -15 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0"/>
+</g>
+<!-- burbujas -->
+<g fill="none" stroke="#2b7bb9" stroke-width="3"><circle cx="190" cy="100" r="7"/><circle cx="175" cy="75" r="5"/><circle cx="195" cy="55" r="4"/></g>
+</svg>

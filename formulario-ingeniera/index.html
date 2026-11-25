@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Tu página web · Formulario</title>
+<meta name="description" content="Contanos cómo querés tu página y armamos la tuya. Te lleva unos 15 minutos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --crema:#F6EFE3; --tinta:#141414; --suave:#5d5850; --linea:#e3d9c8; --blanco:#fff;
+  --acento:#F5A300; --ok:#1FAF38; --foco:#2457D6; --error:#C2410C;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--crema);color:var(--tinta);font:16px/1.55 Manrope,system-ui,sans-serif;padding-bottom:40px}
+.in{max-width:680px;margin:0 auto;padding:0 16px}
+header{background:var(--tinta);color:var(--crema);padding:40px 0 34px}
+header small{letter-spacing:.3em;font-size:11px;font-weight:700}
+header h1{font:800 clamp(26px,7.5vw,40px)/1.12 Unbounded,sans-serif;margin:12px 0 12px}
+header h1 span{color:var(--acento)}
+header p{opacity:.85;max-width:540px}
+.tips{display:grid;gap:8px;margin-top:20px;font-size:14px}
+.tips div{display:flex;gap:10px;align-items:flex-start}
+.tips b{color:var(--acento)}
+
+.barra{position:sticky;top:0;z-index:10;background:var(--crema);border-bottom:1px solid var(--linea)}
+.barra .in{display:flex;align-items:center;gap:12px;padding-top:10px;padding-bottom:10px}
+.pista{flex:1;height:8px;background:var(--linea);border-radius:99px;overflow:hidden}
+.pista i{display:block;height:100%;width:0;background:var(--acento);transition:width .3s}
+.barra span{font-size:13px;font-weight:700;min-width:44px;text-align:right}
+
+main{padding-top:18px}
+fieldset{border:0;background:var(--blanco);border-radius:18px;padding:22px 18px;margin-bottom:16px}
+legend{float:left;width:100%;margin-bottom:6px}
+legend .n{display:inline-block;font:800 12px Unbounded,sans-serif;color:var(--acento);letter-spacing:.08em;margin-bottom:4px}
+legend h2{font:700 20px/1.25 Unbounded,sans-serif}
+fieldset > p.ayuda{clear:both;color:var(--suave);font-size:14px;margin-bottom:6px}
+.campo{clear:both;margin-top:18px}
+.campo > label,.campo > .q{display:block;font-weight:700;margin-bottom:6px}
+.campo .sub{display:block;font-weight:400;color:var(--suave);font-size:14px;margin-top:2px}
+.req{color:var(--error)}
+input[type=text],input[type=email],input[type=tel],input[type=url],input[type=number],textarea,select{
+  width:100%;font:inherit;color:inherit;background:#fbf8f2;border:1.5px solid var(--linea);border-radius:12px;padding:12px 14px;min-height:48px}
+textarea{min-height:96px;resize:vertical}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--foco);background:#fff}
+.dos{display:grid;gap:12px}
+@media(min-width:560px){.dos{grid-template-columns:1fr 1fr}}
+
+.ops{display:grid;gap:8px}
+@media(min-width:560px){.ops.cols{grid-template-columns:1fr 1fr}}
+.op{position:relative;display:flex;gap:10px;align-items:flex-start;border:1.5px solid var(--linea);border-radius:12px;padding:12px 14px;cursor:pointer;background:#fbf8f2;min-height:48px}
+.op input{position:absolute;opacity:0;pointer-events:none}
+.op .caja{flex:none;width:20px;height:20px;border:2px solid #b9ad99;border-radius:6px;margin-top:2px;display:grid;place-items:center;background:#fff}
+.op input[type=radio] + .caja{border-radius:50%}
+.op input:checked + .caja{background:var(--tinta);border-color:var(--tinta)}
+.op input:checked + .caja::after{content:"";width:8px;height:8px;border-radius:2px;background:var(--acento)}
+.op:has(input:checked){border-color:var(--tinta);background:#fff}
+.op input:focus-visible + .caja{outline:3px solid var(--foco);outline-offset:2px}
+.op small{display:block;color:var(--suave);font-size:13px}
+
+/* Estilos visuales */
+.estilos{display:grid;gap:10px;grid-template-columns:1fr 1fr}
+.est{position:relative;border:2px solid var(--linea);border-radius:14px;overflow:hidden;cursor:pointer;background:#fff}
+.est input{position:absolute;opacity:0}
+.est .mini{height:96px;padding:10px;display:flex;flex-direction:column;gap:6px}
+.est .t{padding:8px 10px 10px;font-weight:700;font-size:14px;line-height:1.25}
+.est .t small{display:block;font-weight:400;color:var(--suave);font-size:12px}
+.est:has(input:checked){border-color:var(--tinta);box-shadow:0 0 0 2px var(--acento)}
+.est input:focus-visible ~ .t{outline:3px solid var(--foco)}
+.mini .l{height:7px;border-radius:3px}
+
+/* Paletas */
+.paletas{display:grid;gap:10px}
+@media(min-width:560px){.paletas{grid-template-columns:1fr 1fr}}
+.pal{position:relative;border:2px solid var(--linea);border-radius:14px;padding:12px;cursor:pointer;background:#fff}
+.pal input{position:absolute;opacity:0}
+.pal .sw{display:flex;height:42px;border-radius:9px;overflow:hidden;margin-bottom:8px}
+.pal .sw i{flex:1}
+.pal b{display:block;font-size:15px}
+.pal small{color:var(--suave);font-size:13px}
+.pal:has(input:checked){border-color:var(--tinta);box-shadow:0 0 0 2px var(--acento)}
+.pal input:focus-visible ~ b{outline:3px solid var(--foco)}
+.propios{display:none;margin-top:12px;gap:10px;grid-template-columns:repeat(3,1fr)}
+.propios.on{display:grid}
+.propios label{font-size:13px;font-weight:700;display:grid;gap:4px}
+.propios input[type=color]{width:100%;height:48px;border:1.5px solid var(--linea);border-radius:10px;background:#fff;padding:3px}
+
+.obra{border:1.5px dashed var(--linea);border-radius:14px;padding:14px;margin-top:12px;display:grid;gap:10px}
+.obra b{font-size:14px}
+
+.fotos{list-style:none;display:grid;gap:8px;margin-top:10px}
+.fotos li{display:flex;gap:10px;font-size:15px}
+.fotos li::before{content:"📷";flex:none}
+
+.aviso{background:#FFF4D6;border-radius:12px;padding:12px 14px;font-size:14px;margin-top:14px}
+
+.final{background:var(--tinta);color:var(--crema)}
+.final h2{color:var(--crema)}
+.final p.ayuda{color:#cfc6b6}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:54px;border:0;border-radius:14px;font:800 16px Manrope,sans-serif;cursor:pointer;margin-top:12px;text-decoration:none}
+.btn.wa{background:var(--ok);color:#fff}
+.btn.sec{background:transparent;color:var(--crema);border:1.5px solid #4a463f}
+.btn:focus-visible{outline:3px solid var(--acento);outline-offset:2px}
+.estado{min-height:22px;margin-top:10px;font-size:14px;color:var(--acento);font-weight:700}
+.faltan{color:#ffb38a;font-size:14px;margin-top:10px}
+footer{text-align:center;font-size:13px;color:var(--suave);padding:10px 16px 0}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="in">
+    <small>YAGUÁ · ESTUDIO DIGITAL</small>
+    <h1>Armemos tu página <span>de ingeniería</span>.</h1>
+    <p>Con estas respuestas diseñamos una página a tu medida. Respondé con tus palabras, como si me lo contaras por WhatsApp: no hace falta que suene perfecto.</p>
+    <div class="tips">
+      <div><b>⏱</b><span>Te lleva unos 15 minutos.</span></div>
+      <div><b>💾</b><span>Lo que escribís se guarda solo en este teléfono. Si cerrás, al volver sigue ahí.</span></div>
+      <div><b>✱</b><span>Solo lo marcado con <span class="req">*</span> es obligatorio. Lo que no sepas, dejalo vacío.</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="barra" aria-hidden="true"><div class="in"><div class="pista"><i id="prog"></i></div><span id="pct">0%</span></div></div>
+
+<main class="in">
+<form id="f" novalidate>
+
+<!-- 1 -->
+<fieldset>
+  <legend><span class="n">01</span><h2>Quién sos</h2></legend>
+  <p class="ayuda">Los datos que van a aparecer en la página.</p>
+  <div class="campo"><label for="nombre">Nombre y apellido, como querés que figure <span class="req">*</span><span class="sub">Ej: Ing. Civil María Pérez</span></label><input type="text" id="nombre" name="Nombre a mostrar" required autocomplete="name"></div>
+  <div class="campo dos">
+    <div><label for="titulo">Título</label><input type="text" id="titulo" name="Título" value="Ingeniera Civil"></div>
+    <div><label for="uni">Universidad y año de egreso</label><input type="text" id="uni" name="Universidad y egreso" placeholder="Ej: UTN FRBA, 2016"></div>
+  </div>
+  <div class="campo dos">
+    <div><label for="mat">N.º de matrícula</label><input type="text" id="mat" name="Matrícula"></div>
+    <div><label for="colegio">Colegio / Consejo y provincia</label><input type="text" id="colegio" name="Colegio profesional" placeholder="Ej: CIPBA Distrito II"></div>
+  </div>
+  <div class="campo"><label for="espec">Especializaciones, posgrados o cursos que valgan la pena mostrar</label><textarea id="espec" name="Especializaciones"></textarea></div>
+  <div class="campo"><label for="anios">¿Cuántos años de experiencia tenés?</label><input type="number" id="anios" name="Años de experiencia" inputmode="numeric" min="0"></div>
+  <div class="campo">
+    <span class="q">¿Trabajás sola o con equipo?</span>
+    <div class="ops cols">
+      <label class="op"><input type="radio" name="Forma de trabajo" value="Sola, independiente"><span class="caja"></span><span>Sola, independiente</span></label>
+      <label class="op"><input type="radio" name="Forma de trabajo" value="Con equipo / estudio"><span class="caja"></span><span>Con equipo / estudio</span></label>
+    </div>
+  </div>
+  <div class="campo"><label for="marca">¿Tenés nombre de estudio o marca? <span class="sub">Si no, usamos tu nombre.</span></label><input type="text" id="marca" name="Nombre de estudio o marca"></div>
+</fieldset>
+
+<!-- 2 -->
+<fieldset>
+  <legend><span class="n">02</span><h2>Cómo te contactan</h2></legend>
+  <div class="campo dos">
+    <div><label for="wa">WhatsApp para clientes <span class="req">*</span></label><input type="tel" id="wa" name="WhatsApp" required inputmode="tel" placeholder="Con código de área"></div>
+    <div><label for="mail">Email</label><input type="email" id="mail" name="Email" inputmode="email"></div>
+  </div>
+  <div class="campo dos">
+    <div><label for="ig">Instagram</label><input type="text" id="ig" name="Instagram" placeholder="@usuario"></div>
+    <div><label for="li">LinkedIn</label><input type="text" id="li" name="LinkedIn" placeholder="Link o nombre"></div>
+  </div>
+  <div class="campo"><label for="ciudad">Ciudad donde estás <span class="req">*</span></label><input type="text" id="ciudad" name="Ciudad" required></div>
+  <div class="campo"><label for="zona">¿Hasta dónde trabajás? <span class="sub">Ciudades, partidos o "todo el país / remoto".</span></label><input type="text" id="zona" name="Zona de cobertura"></div>
+  <div class="campo">
+    <span class="q">¿Atendés en una oficina?</span>
+    <div class="ops cols">
+      <label class="op"><input type="radio" name="Oficina" value="Sí, y quiero mostrar la dirección"><span class="caja"></span><span>Sí, y quiero mostrar la dirección</span></label>
+      <label class="op"><input type="radio" name="Oficina" value="Sí, pero sin mostrar la dirección"><span class="caja"></span><span>Sí, pero no mostrar dirección</span></label>
+      <label class="op"><input type="radio" name="Oficina" value="No, voy a la obra / remoto"><span class="caja"></span><span>No, voy a la obra o es remoto</span></label>
+    </div>
+  </div>
+  <div class="campo"><label for="dir">Dirección (si la querés mostrar)</label><input type="text" id="dir" name="Dirección"></div>
+  <div class="campo"><label for="hor">Días y horarios de atención</label><input type="text" id="hor" name="Horarios" placeholder="Ej: lun a vie 9 a 18"></div>
+</fieldset>
+
+<!-- 3 -->
+<fieldset>
+  <legend><span class="n">03</span><h2>Qué hacés</h2></legend>
+  <p class="ayuda">Marcá todo lo que ofrecés.</p>
+  <div class="campo">
+    <div class="ops cols" data-grupo="Servicios">
+      <label class="op"><input type="checkbox" name="Servicios" value="Cálculo estructural"><span class="caja"></span><span>Cálculo estructural</span></label>
+      <label class="op"><input type="checkbox" name="Servicios" value="Proyecto de obra"><span class="caja"></span><span>Proyecto de obra</span></label>
+      <label class="op"><input type="checkbox" name="Servicios" value="Dirección de obra"><span class="caja"></span><span>Dirección de obra</span></label>
+      <label class="op"><input type="checkbox" name="Servicios" value="Representación técnica"><span class="caja"></span><span>Representación técnica</span></label>
+      <label class="op"><input type="checkbox" name="Servicios" value="Planos municipales y permisos de obra"><span class="caja"></span><span>Planos municipales y permisos</span></label>
+      <label class="op"><input type="checkbox" name="Servicios" value="Regularización de construcciones / planos conforme a obra"><span class="caja"></span><span>Regularización / conforme a obra</span></label>
+      <label class="op"><input type="checkbox" name="Servicios" value="Relevamientos"><span class="caja"></span><span>Relevamientos</span></label>
+      <label class="op"><input type="checkbox" name="Servicios" value="Cómputo y presupuesto"><span class="caja"></span><span>Cómputo y presupuesto</span></label>
+      <label class="op"><input type="checkbox" name="Servicios" value="Inspección y diagnóstico de patologías (fisuras, humedad)"><span class="caja"></span><span>Inspección de fisuras, humedad, patologías</span></label>
+      <label class="op"><input type="checkbox" name="Servicios" value="Tasaciones"><span class="caja"></span><span>Tasaciones</span></label>
+      <label class="op"><input type="checkbox" name="Servicios" value="Peritajes"><span class="caja"></span><span>Peritajes</span></label>
+      <label class="op"><input type="checkbox" name="Servicios" value="Estudios de suelo"><span class="caja"></span><span>Estudios de suelo</span></label>
+      <label class="op"><input type="checkbox" name="Servicios" value="Obras viales / hidráulicas"><span class="caja"></span><span>Obras viales / hidráulicas</span></label>
+      <label class="op"><input type="checkbox" name="Servicios" value="Construcción llave en mano"><span class="caja"></span><span>Construcción llave en mano</span></label>
+      <label class="op"><input type="checkbox" name="Servicios" value="Higiene y seguridad en obra"><span class="caja"></span><span>Higiene y seguridad</span></label>
+      <label class="op"><input type="checkbox" name="Servicios" value="Asesoramiento / consultoría"><span class="caja"></span><span>Asesoramiento / consultoría</span></label>
+    </div>
+  </div>
+  <div class="campo"><label for="otros">Otros servicios que no estén en la lista</label><textarea id="otros" name="Otros servicios"></textarea></div>
+  <div class="campo"><label for="estrella">Si tuvieras que elegir UNO: ¿qué servicio querés vender más? <span class="req">*</span><span class="sub">La página va a empujar sobre todo este. El que más te conviene, no el que más hacés.</span></label><input type="text" id="estrella" name="Servicio principal" required></div>
+</fieldset>
+
+<!-- 4 -->
+<fieldset>
+  <legend><span class="n">04</span><h2>A quién le hablás</h2></legend>
+  <div class="campo">
+    <span class="q">¿Quiénes te contratan (o querés que te contraten)?</span>
+    <div class="ops cols">
+      <label class="op"><input type="checkbox" name="Clientes" value="Familias que construyen o amplían su casa"><span class="caja"></span><span>Familias que construyen o amplían</span></label>
+      <label class="op"><input type="checkbox" name="Clientes" value="Personas que compran o venden una propiedad"><span class="caja"></span><span>Quien compra o vende una propiedad</span></label>
+      <label class="op"><input type="checkbox" name="Clientes" value="Comercios y locales"><span class="caja"></span><span>Comercios y locales</span></label>
+      <label class="op"><input type="checkbox" name="Clientes" value="Empresas e industrias"><span class="caja"></span><span>Empresas e industrias</span></label>
+      <label class="op"><input type="checkbox" name="Clientes" value="Desarrolladores / constructoras"><span class="caja"></span><span>Desarrolladores / constructoras</span></label>
+      <label class="op"><input type="checkbox" name="Clientes" value="Arquitectos que necesitan cálculo"><span class="caja"></span><span>Arquitectos que necesitan cálculo</span></label>
+      <label class="op"><input type="checkbox" name="Clientes" value="Consorcios y administraciones"><span class="caja"></span><span>Consorcios y administraciones</span></label>
+      <label class="op"><input type="checkbox" name="Clientes" value="Municipios / obra pública"><span class="caja"></span><span>Municipios / obra pública</span></label>
+    </div>
+  </div>
+  <div class="campo"><label for="problema">¿Con qué problema te llega la gente casi siempre? <span class="sub">Con sus palabras. Ej: "me apareció una fisura y tengo miedo", "el municipio me pide planos".</span></label><textarea id="problema" name="Problema típico del cliente"></textarea></div>
+  <div class="campo"><label for="objecion">¿Qué duda o miedo tienen antes de contratarte? <span class="sub">Ej: "que sea caro", "que tarde", "no sé si necesito un ingeniero".</span></label><textarea id="objecion" name="Dudas antes de contratar"></textarea></div>
+</fieldset>
+
+<!-- 5 -->
+<fieldset>
+  <legend><span class="n">05</span><h2>Por qué vos</h2></legend>
+  <p class="ayuda">Esto es lo que más vende. Tomate un minuto acá.</p>
+  <div class="campo"><label for="dif">¿Qué hacés distinto a otros ingenieros? <span class="req">*</span><span class="sub">Ej: respondo en el día, voy a la obra seguido, explico sin tecnicismos, entrego en plazo.</span></label><textarea id="dif" name="Diferencial" required></textarea></div>
+  <div class="campo"><label for="nums">Números de tu trabajo <span class="sub">Aproximados está bien: obras, m² calculados, clientes, años.</span></label><textarea id="nums" name="Números" placeholder="Ej: +80 obras, +15.000 m² calculados"></textarea></div>
+  <div class="campo"><label for="empresas">Empresas, estudios o instituciones con las que trabajaste <span class="sub">Solo las que te autoricen a nombrar.</span></label><textarea id="empresas" name="Empresas con las que trabajó"></textarea></div>
+
+  <div class="campo">
+    <span class="q">Obras o trabajos destacados <span class="sub">Hasta 3. Las fotos me las mandás aparte por WhatsApp.</span></span>
+    <div class="obra"><b>Obra 1</b>
+      <input type="text" name="Obra 1 · Nombre/tipo" placeholder="Qué es (ej: Vivienda 2 plantas)" aria-label="Obra 1 nombre">
+      <input type="text" name="Obra 1 · Lugar y año" placeholder="Dónde y cuándo" aria-label="Obra 1 lugar y año">
+      <textarea name="Obra 1 · Qué hiciste" placeholder="Qué hiciste vos y qué resultado tuvo" aria-label="Obra 1 descripción"></textarea>
+    </div>
+    <div class="obra"><b>Obra 2</b>
+      <input type="text" name="Obra 2 · Nombre/tipo" placeholder="Qué es" aria-label="Obra 2 nombre">
+      <input type="text" name="Obra 2 · Lugar y año" placeholder="Dónde y cuándo" aria-label="Obra 2 lugar y año">
+      <textarea name="Obra 2 · Qué hiciste" placeholder="Qué hiciste vos y qué resultado tuvo" aria-label="Obra 2 descripción"></textarea>
+    </div>
+    <div class="obra"><b>Obra 3</b>
+      <input type="text" name="Obra 3 · Nombre/tipo" placeholder="Qué es" aria-label="Obra 3 nombre">
+      <input type="text" name="Obra 3 · Lugar y año" placeholder="Dónde y cuándo" aria-label="Obra 3 lugar y año">
+      <textarea name="Obra 3 · Qué hiciste" placeholder="Qué hiciste vos y qué resultado tuvo" aria-label="Obra 3 descripción"></textarea>
+    </div>
+  </div>
+
+  <div class="campo"><label for="testi">Comentarios de clientes <span class="sub">Copiá mensajes de WhatsApp o reseñas de Google, con nombre e inicial del apellido.</span></label><textarea id="testi" name="Testimonios" placeholder="“Excelente profesional…” — Juan P., Tandil"></textarea></div>
+</fieldset>
+
+<!-- 6 -->
+<fieldset>
+  <legend><span class="n">06</span><h2>Tu historia y tu tono</h2></legend>
+  <div class="campo"><label for="hist">Contame en pocas líneas por qué elegiste la ingeniería y cómo trabajás</label><textarea id="hist" name="Historia"></textarea></div>
+  <div class="campo">
+    <span class="q">¿Cómo querés sonar?</span>
+    <div class="ops">
+      <label class="op"><input type="radio" name="Tono" value="Formal y técnico"><span class="caja"></span><span>Formal y técnico<small>"Brindamos servicios de ingeniería estructural…"</small></span></label>
+      <label class="op"><input type="radio" name="Tono" value="Profesional pero cercano"><span class="caja"></span><span>Profesional pero cercano<small>"Te acompaño desde el plano hasta la última losa."</small></span></label>
+      <label class="op"><input type="radio" name="Tono" value="Directo y simple"><span class="caja"></span><span>Directo y simple<small>"¿Te apareció una fisura? La revisamos esta semana."</small></span></label>
+    </div>
+  </div>
+  <div class="campo">
+    <span class="q">¿La página habla en primera persona o como estudio?</span>
+    <div class="ops cols">
+      <label class="op"><input type="radio" name="Persona" value="Yo (primera persona)"><span class="caja"></span><span>"Yo" — soy María, ingeniera</span></label>
+      <label class="op"><input type="radio" name="Persona" value="Nosotros (estudio)"><span class="caja"></span><span>"Nosotros" — como estudio</span></label>
+    </div>
+  </div>
+  <div class="campo"><label for="frase">¿Una frase que te represente? <span class="sub">Opcional. Si no, la escribimos nosotros.</span></label><input type="text" id="frase" name="Frase"></div>
+</fieldset>
+
+<!-- 7 -->
+<fieldset>
+  <legend><span class="n">07</span><h2>Cómo se ve</h2></legend>
+  <div class="campo">
+    <span class="q">¿Qué estilo te gusta más? <span class="req">*</span></span>
+    <div class="estilos">
+      <label class="est"><input type="radio" name="Estilo" value="Sobrio y corporativo" required>
+        <div class="mini" style="background:#0F2A44"><div class="l" style="width:60%;background:#fff"></div><div class="l" style="width:85%;background:#7f97ad"></div><div class="l" style="width:40%;background:#C9A227;margin-top:auto;height:14px"></div></div>
+        <div class="t">Sobrio y corporativo<small>Confianza, solidez, seriedad</small></div></label>
+      <label class="est"><input type="radio" name="Estilo" value="Moderno y minimalista">
+        <div class="mini" style="background:#fafafa"><div class="l" style="width:70%;background:#111;height:12px"></div><div class="l" style="width:50%;background:#ddd"></div><div class="l" style="width:30%;background:#111;margin-top:auto;height:14px"></div></div>
+        <div class="t">Moderno y minimalista<small>Mucho blanco, limpio, elegante</small></div></label>
+      <label class="est"><input type="radio" name="Estilo" value="Industrial / de obra">
+        <div class="mini" style="background:#2b2b2b"><div class="l" style="width:75%;background:#F5B700;height:12px"></div><div class="l" style="width:55%;background:#888"></div><div class="l" style="width:100%;background:repeating-linear-gradient(45deg,#F5B700 0 8px,#111 8px 16px);margin-top:auto;height:12px"></div></div>
+        <div class="t">Industrial / de obra<small>Hormigón, acero, fuerza</small></div></label>
+      <label class="est"><input type="radio" name="Estilo" value="Cálido y cercano">
+        <div class="mini" style="background:#F3E9DC"><div class="l" style="width:60%;background:#A0522D;height:12px"></div><div class="l" style="width:80%;background:#cdb9a3"></div><div class="l" style="width:35%;background:#5B7553;margin-top:auto;height:14px;border-radius:99px"></div></div>
+        <div class="t">Cálido y cercano<small>Tierra, madera, humano</small></div></label>
+      <label class="est"><input type="radio" name="Estilo" value="Técnico / de planos">
+        <div class="mini" style="background:#123E7C;background-image:linear-gradient(#ffffff22 1px,transparent 1px),linear-gradient(90deg,#ffffff22 1px,transparent 1px);background-size:12px 12px"><div class="l" style="width:65%;background:#fff;height:12px"></div><div class="l" style="width:45%;background:#9fc0ec"></div></div>
+        <div class="t">Técnico / de planos<small>Grillas, líneas, precisión</small></div></label>
+      <label class="est"><input type="radio" name="Estilo" value="Elegante y femenino">
+        <div class="mini" style="background:#F7F1EE"><div class="l" style="width:55%;background:#3b2f33;height:12px"></div><div class="l" style="width:75%;background:#d8c2bd"></div><div class="l" style="width:35%;background:#B76E79;margin-top:auto;height:14px;border-radius:99px"></div></div>
+        <div class="t">Elegante y femenino<small>Delicado pero profesional</small></div></label>
+    </div>
+  </div>
+
+  <div class="campo">
+    <span class="q">Elegí una paleta de colores <span class="req">*</span></span>
+    <div class="paletas">
+      <label class="pal"><input type="radio" name="Paleta" value="Azul acero (azul marino, gris, dorado)" required><div class="sw"><i style="background:#0F2A44"></i><i style="background:#3D5A75"></i><i style="background:#C9CED4"></i><i style="background:#C9A227"></i><i style="background:#F5F6F7"></i></div><b>Azul acero</b><small>Confianza y solidez</small></label>
+      <label class="pal"><input type="radio" name="Paleta" value="Hormigón (grises y amarillo obra)"><div class="sw"><i style="background:#1E1E1E"></i><i style="background:#5A5A5A"></i><i style="background:#B8B5AF"></i><i style="background:#F5B700"></i><i style="background:#EFEDE8"></i></div><b>Hormigón</b><small>Obra y fuerza</small></label>
+      <label class="pal"><input type="radio" name="Paleta" value="Terracota (ladrillo, arena, verde oliva)"><div class="sw"><i style="background:#3A2A20"></i><i style="background:#A0522D"></i><i style="background:#D9A47A"></i><i style="background:#5B7553"></i><i style="background:#F3E9DC"></i></div><b>Terracota</b><small>Cálido y cercano</small></label>
+      <label class="pal"><input type="radio" name="Paleta" value="Plano azul (azul plano técnico, blanco, cian)"><div class="sw"><i style="background:#0B2D5B"></i><i style="background:#123E7C"></i><i style="background:#4D8FE0"></i><i style="background:#9FE3F0"></i><i style="background:#FFFFFF"></i></div><b>Plano azul</b><small>Técnico y preciso</small></label>
+      <label class="pal"><input type="radio" name="Paleta" value="Verde bosque (verde oscuro, piedra, cobre)"><div class="sw"><i style="background:#16302B"></i><i style="background:#2F5D50"></i><i style="background:#A9B8A8"></i><i style="background:#B87333"></i><i style="background:#F2F1EC"></i></div><b>Verde bosque</b><small>Sustentable y sereno</small></label>
+      <label class="pal"><input type="radio" name="Paleta" value="Rosa nude (bordó, rosa viejo, crema)"><div class="sw"><i style="background:#3B2F33"></i><i style="background:#7A3B4A"></i><i style="background:#B76E79"></i><i style="background:#E7D3CF"></i><i style="background:#F7F1EE"></i></div><b>Rosa nude</b><small>Elegante y distinto</small></label>
+      <label class="pal"><input type="radio" name="Paleta" value="Blanco y negro con un acento"><div class="sw"><i style="background:#0A0A0A"></i><i style="background:#3a3a3a"></i><i style="background:#E5E5E5"></i><i style="background:#FF5A1F"></i><i style="background:#FFFFFF"></i></div><b>Blanco y negro + acento</b><small>Minimal y moderno</small></label>
+      <label class="pal"><input type="radio" name="Paleta" value="Mis propios colores" id="palPropia"><div class="sw" style="background:conic-gradient(#f00,#ff0,#0f0,#0ff,#00f,#f0f,#f00)"></div><b>Tengo mis colores</b><small>Elegilos abajo</small></label>
+    </div>
+    <div class="propios" id="propios">
+      <label>Principal<input type="color" name="Color propio 1" value="#0F2A44"></label>
+      <label>Secundario<input type="color" name="Color propio 2" value="#C9CED4"></label>
+      <label>Acento<input type="color" name="Color propio 3" value="#C9A227"></label>
+    </div>
+  </div>
+
+  <div class="campo"><label for="nocolor">¿Algún color que NO quieras ver?</label><input type="text" id="nocolor" name="Colores a evitar"></div>
+
+  <div class="campo">
+    <span class="q">¿Tenés logo?</span>
+    <div class="ops">
+      <label class="op"><input type="radio" name="Logo" value="Sí, tengo logo (lo mando aparte)"><span class="caja"></span><span>Sí, te lo mando aparte</span></label>
+      <label class="op"><input type="radio" name="Logo" value="No, usar mi nombre con una tipografía linda"><span class="caja"></span><span>No, usá mi nombre con una tipografía linda</span></label>
+      <label class="op"><input type="radio" name="Logo" value="No, me gustaría que me armen uno"><span class="caja"></span><span>No, me gustaría que me armen uno</span></label>
+    </div>
+  </div>
+
+  <div class="campo">
+    <span class="q">¿Querés aparecer en fotos?</span>
+    <div class="ops">
+      <label class="op"><input type="radio" name="Foto personal" value="Sí, tengo fotos profesionales"><span class="caja"></span><span>Sí, tengo fotos profesionales</span></label>
+      <label class="op"><input type="radio" name="Foto personal" value="Sí, pero no tengo buenas fotos"><span class="caja"></span><span>Sí, pero no tengo buenas fotos</span></label>
+      <label class="op"><input type="radio" name="Foto personal" value="Prefiero no aparecer"><span class="caja"></span><span>Prefiero no aparecer</span></label>
+    </div>
+    <p class="aviso">Te lo digo de frente: en servicios profesionales, <b>una foto tuya genera mucha más confianza</b> que cualquier imagen de obra. Si no tenés, una foto con buena luz sacada con el celular alcanza.</p>
+  </div>
+
+  <div class="campo"><label for="refs">Páginas que te gusten (de lo que sea) <span class="sub">Pegá links y decime qué te gusta de cada una.</span></label><textarea id="refs" name="Páginas de referencia"></textarea></div>
+  <div class="campo"><label for="noquiero">¿Algo que NO quieras en tu página?</label><textarea id="noquiero" name="Cosas que no quiere"></textarea></div>
+</fieldset>
+
+<!-- 8 -->
+<fieldset>
+  <legend><span class="n">08</span><h2>Qué tiene que hacer la página</h2></legend>
+  <div class="campo">
+    <span class="q">¿Qué querés que haga quien entra? <span class="req">*</span></span>
+    <div class="ops">
+      <label class="op"><input type="radio" name="Objetivo" value="Que me escriba por WhatsApp" required><span class="caja"></span><span>Que me escriba por WhatsApp</span></label>
+      <label class="op"><input type="radio" name="Objetivo" value="Que pida presupuesto con un formulario"><span class="caja"></span><span>Que pida presupuesto con un formulario</span></label>
+      <label class="op"><input type="radio" name="Objetivo" value="Que me llame"><span class="caja"></span><span>Que me llame</span></label>
+      <label class="op"><input type="radio" name="Objetivo" value="Mostrar mi trabajo (portfolio, para mandar el link)"><span class="caja"></span><span>Mostrar mi trabajo, para mandar el link</span></label>
+    </div>
+  </div>
+  <div class="campo">
+    <span class="q">¿Qué secciones te gustaría?</span>
+    <div class="ops cols">
+      <label class="op"><input type="checkbox" name="Secciones" value="Servicios" checked><span class="caja"></span><span>Servicios</span></label>
+      <label class="op"><input type="checkbox" name="Secciones" value="Sobre mí" checked><span class="caja"></span><span>Sobre mí</span></label>
+      <label class="op"><input type="checkbox" name="Secciones" value="Obras / portfolio"><span class="caja"></span><span>Obras / portfolio</span></label>
+      <label class="op"><input type="checkbox" name="Secciones" value="Cómo trabajo (paso a paso)"><span class="caja"></span><span>Cómo trabajo, paso a paso</span></label>
+      <label class="op"><input type="checkbox" name="Secciones" value="Testimonios"><span class="caja"></span><span>Testimonios</span></label>
+      <label class="op"><input type="checkbox" name="Secciones" value="Preguntas frecuentes"><span class="caja"></span><span>Preguntas frecuentes</span></label>
+      <label class="op"><input type="checkbox" name="Secciones" value="Mapa / zona de cobertura"><span class="caja"></span><span>Mapa / zona de cobertura</span></label>
+      <label class="op"><input type="checkbox" name="Secciones" value="Formulario de presupuesto"><span class="caja"></span><span>Formulario de presupuesto</span></label>
+    </div>
+  </div>
+  <div class="campo">
+    <span class="q">¿Mostramos precios?</span>
+    <div class="ops">
+      <label class="op"><input type="radio" name="Precios" value="No, solo a consultar"><span class="caja"></span><span>No, solo a consultar</span></label>
+      <label class="op"><input type="radio" name="Precios" value="Precio desde, para algunos servicios"><span class="caja"></span><span>"Desde $…" en algunos servicios</span></label>
+      <label class="op"><input type="radio" name="Precios" value="Consulta inicial gratis / con costo"><span class="caja"></span><span>Solo el valor de la primera consulta</span></label>
+    </div>
+  </div>
+  <div class="campo"><label for="faq">Preguntas que te hacen siempre (y su respuesta corta)</label><textarea id="faq" name="Preguntas frecuentes" placeholder="Ej: ¿Cuánto tarda un plano municipal? → Entre 30 y 60 días según el municipio."></textarea></div>
+  <div class="campo">
+    <span class="q">¿Tenés dominio propio (tunombre.com.ar)?</span>
+    <div class="ops">
+      <label class="op"><input type="radio" name="Dominio" value="Sí, ya tengo"><span class="caja"></span><span>Sí, ya tengo</span></label>
+      <label class="op"><input type="radio" name="Dominio" value="No, pero quiero uno"><span class="caja"></span><span>No, pero quiero uno</span></label>
+      <label class="op"><input type="radio" name="Dominio" value="No sé qué es"><span class="caja"></span><span>No sé qué es</span></label>
+    </div>
+  </div>
+  <div class="campo"><label for="dom">Si ya tenés, ¿cuál? / ¿Cuál te gustaría?</label><input type="text" id="dom" name="Nombre de dominio"></div>
+  <div class="campo"><label for="extra">¿Algo más que quieras contarme?</label><textarea id="extra" name="Comentarios finales"></textarea></div>
+</fieldset>
+
+<!-- 9 -->
+<fieldset>
+  <legend><span class="n">09</span><h2>Fotos (las mandás aparte)</h2></legend>
+  <p class="ayuda">Por WhatsApp, en la mejor calidad que tengas (si podés, como "documento" para que no pierdan calidad):</p>
+  <ul class="fotos">
+    <li>Una o dos fotos tuyas: retrato y, si tenés, en obra con casco.</li>
+    <li>Fotos de obras: antes, durante y después. Hasta 10.</li>
+    <li>Tu logo, si tenés.</li>
+    <li>Capturas de comentarios de clientes, si tenés.</li>
+  </ul>
+  <div class="campo">
+    <span class="q">¿Tenés fotos de obras?</span>
+    <div class="ops">
+      <label class="op"><input type="radio" name="Fotos de obras" value="Sí, muchas"><span class="caja"></span><span>Sí, muchas</span></label>
+      <label class="op"><input type="radio" name="Fotos de obras" value="Algunas"><span class="caja"></span><span>Algunas</span></label>
+      <label class="op"><input type="radio" name="Fotos de obras" value="No tengo, usar imágenes de stock"><span class="caja"></span><span>No tengo, usá imágenes de referencia</span></label>
+    </div>
+  </div>
+</fieldset>
+
+<!-- Envío -->
+<fieldset class="final">
+  <legend><span class="n">LISTO</span><h2>Mandame tus respuestas</h2></legend>
+  <p class="ayuda">Tocá el botón verde: se abre WhatsApp con todo escrito. Solo tenés que darle enviar.</p>
+  <button type="button" class="btn wa" id="enviar">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-1 1.2-.4.2-.7.1a8 8 0 0 1-4-3.5c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6a1.1 1.1 0 0 0-.8.4 3.4 3.4 0 0 0-1 2.5 5.9 5.9 0 0 0 1.2 3.1c.2.2 2.1 3.2 5 4.4 1.9.8 2.6.9 3.5.7.6-.1 1.8-.7 2-1.4s.3-1.3.2-1.4-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15l-1.4 5 5.2-1.4A10 10 0 1 0 12 2zm0 18.3a8.3 8.3 0 0 1-4.2-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.3 8.3 0 1 1 12 20.3z"/></svg>
+    Enviar por WhatsApp
+  </button>
+  <button type="button" class="btn sec" id="copiar">Copiar respuestas</button>
+  <button type="button" class="btn sec" id="bajar">Descargar como archivo</button>
+  <p class="faltan" id="faltan" hidden></p>
+  <p class="estado" id="estado" role="status" aria-live="polite"></p>
+</fieldset>
+
+</form>
+</main>
+<footer>Hecho por Yaguá · Estudio digital</footer>
+
+<script>
+(function(){
+  // Número que recibe las respuestas (con código de país, sin + ni espacios)
+  var DESTINO = '5492284320122';
+  var KEY = 'yagua-form-ingeniera-v1';
+  var f = document.getElementById('f');
+  var estado = document.getElementById('estado');
+  var faltan = document.getElementById('faltan');
+
+  // ---- Guardado automático ----
+  function guardar(){
+    var datos = {};
+    Array.prototype.forEach.call(f.elements, function(el){
+      if(!el.name) return;
+      var id = el.name + '|' + (el.type==='checkbox'||el.type==='radio' ? el.value : '');
+      if(el.type==='checkbox'||el.type==='radio') datos[id] = el.checked;
+      else datos[id] = el.value;
+    });
+    try{ localStorage.setItem(KEY, JSON.stringify(datos)); }catch(e){}
+  }
+  function cargar(){
+    var raw; try{ raw = localStorage.getItem(KEY); }catch(e){}
+    if(!raw) return;
+    var datos; try{ datos = JSON.parse(raw); }catch(e){ return; }
+    Array.prototype.forEach.call(f.elements, function(el){
+      if(!el.name) return;
+      var id = el.name + '|' + (el.type==='checkbox'||el.type==='radio' ? el.value : '');
+      if(!(id in datos)) return;
+      if(el.type==='checkbox'||el.type==='radio') el.checked = datos[id];
+      else el.value = datos[id];
+    });
+  }
+
+  // ---- Progreso ----
+  var claves = ['Nombre a mostrar','WhatsApp','Ciudad','Servicios','Servicio principal','Clientes','Diferencial','Obra 1 · Nombre/tipo','Tono','Estilo','Paleta','Logo','Foto personal','Objetivo','Precios','Fotos de obras'];
+  function progreso(){
+    var hechos = claves.filter(function(n){
+      var els = f.querySelectorAll('[name="'+n+'"]');
+      return Array.prototype.some.call(els, function(el){
+        return (el.type==='checkbox'||el.type==='radio') ? el.checked : el.value.trim()!=='';
+      });
+    }).length;
+    var p = Math.round(hechos/claves.length*100);
+    document.getElementById('prog').style.width = p+'%';
+    document.getElementById('pct').textContent = p+'%';
+  }
+
+  function propios(){
+    document.getElementById('propios').classList.toggle('on', document.getElementById('palPropia').checked);
+  }
+
+  // ---- Armar texto ----
+  function armar(){
+    var orden = [], vals = {};
+    Array.prototype.forEach.call(f.elements, function(el){
+      if(!el.name) return;
+      if(orden.indexOf(el.name)<0) orden.push(el.name);
+      var v = null;
+      if(el.type==='checkbox'||el.type==='radio'){ if(el.checked) v = el.value; }
+      else if(el.type==='color'){ v = null; }
+      else if(el.value.trim()) v = el.value.trim();
+      if(v){ (vals[el.name] = vals[el.name]||[]).push(v); }
+    });
+    // Colores propios solo si eligió esa paleta
+    if(document.getElementById('palPropia').checked){
+      ['Color propio 1','Color propio 2','Color propio 3'].forEach(function(n){ vals[n] = [f.querySelector('[name="'+n+'"]').value]; });
+    }
+    var titulos = {'Nombre a mostrar':'QUIÉN SOY','WhatsApp':'CONTACTO','Servicios':'QUÉ HAGO','Clientes':'A QUIÉN LE HABLO','Diferencial':'POR QUÉ YO','Historia':'HISTORIA Y TONO','Estilo':'DISEÑO','Objetivo':'QUÉ TIENE QUE HACER LA PÁGINA','Fotos de obras':'FOTOS'};
+    var out = ['*FORMULARIO PÁGINA WEB · INGENIERÍA CIVIL*',''];
+    orden.forEach(function(n){
+      if(titulos[n]) out.push('', '*— '+titulos[n]+' —*');
+      if(!vals[n]) return;
+      var v = vals[n].length>1 ? vals[n].map(function(x){return '  • '+x;}).join('\n') : vals[n][0];
+      out.push(vals[n].length>1 ? '*'+n+':*\n'+v : '*'+n+':* '+v);
+    });
+    out.push('', '(Las fotos te las mando aparte)');
+    return out.join('\n').replace(/\*— [^\n]+ —\*\n(?=\n|\()/g,'').replace(/\n{3,}/g,'\n\n');
+  }
+
+  function revisar(){
+    var faltantes = [];
+    f.querySelectorAll('[required]').forEach(function(el){
+      var ok = (el.type==='radio') ? !!f.querySelector('[name="'+el.name+'"]:checked') : el.value.trim()!=='';
+      if(!ok && faltantes.indexOf(el.name)<0) faltantes.push(el.name);
+    });
+    if(faltantes.length){
+      faltan.hidden = false;
+      faltan.textContent = 'Te faltan: ' + faltantes.join(', ') + '. Podés mandarlo igual, pero me ayuda mucho tenerlos.';
+    } else faltan.hidden = true;
+    return faltantes.length===0;
+  }
+
+  function avisar(t){ estado.textContent = t; setTimeout(function(){ if(estado.textContent===t) estado.textContent=''; }, 4000); }
+
+  function copiar(texto){
+    if(navigator.clipboard && window.isSecureContext){
+      return navigator.clipboard.writeText(texto).then(function(){return true;},function(){return fallbackCopy(texto);});
+    }
+    return Promise.resolve(fallbackCopy(texto));
+  }
+  function fallbackCopy(texto){
+    var ta = document.createElement('textarea'); ta.value = texto; ta.setAttribute('readonly','');
+    ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select();
+    var ok = false; try{ ok = document.execCommand('copy'); }catch(e){}
+    document.body.removeChild(ta); return ok;
+  }
+
+  document.getElementById('enviar').addEventListener('click', function(){
+    var completo = revisar();
+    if(!completo && !confirm('Te faltan algunos datos importantes. ¿Lo mandás igual?')) return;
+    var texto = armar();
+    // Copia de respaldo por si WhatsApp corta un mensaje muy largo
+    copiar(texto);
+    window.location.href = 'https://wa.me/'+DESTINO+'?text='+encodeURIComponent(texto);
+  });
+  document.getElementById('copiar').addEventListener('click', function(){
+    revisar();
+    copiar(armar()).then(function(ok){ avisar(ok ? '✓ Copiado. Pegalo en un chat de WhatsApp.' : 'No se pudo copiar. Probá con "Descargar".'); });
+  });
+  document.getElementById('bajar').addEventListener('click', function(){
+    revisar();
+    var nombre = (f.querySelector('[name="Nombre a mostrar"]').value.trim() || 'respuestas').replace(/[^\wáéíóúñ ]/gi,'').replace(/\s+/g,'-');
+    var blob = new Blob([armar()], {type:'text/plain;charset=utf-8'});
+    var file = null; try{ file = new File([blob], 'formulario-'+nombre+'.txt', {type:'text/plain'}); }catch(e){}
+    if(file && navigator.canShare && navigator.canShare({files:[file]})){
+      navigator.share({files:[file], title:'Formulario página web'}).catch(function(){});
+      return;
+    }
+    var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'formulario-'+nombre+'.txt';
+    document.body.appendChild(a); a.click(); a.remove();
+    avisar('✓ Archivo descargado.');
+  });
+
+  f.addEventListener('input', function(){ guardar(); progreso(); propios(); });
+  f.addEventListener('change', function(){ guardar(); progreso(); propios(); });
+  cargar(); progreso(); propios();
+})();
+</script>
+</body>
+</html>
